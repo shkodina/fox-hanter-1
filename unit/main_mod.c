@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <avr/delay.h>
+#include <avr/interrupt.h>
 #include "rf73_spi.h"
 
 #define INVBIT(port, bit) port = port ^ (1<<bit);
@@ -21,8 +22,6 @@ UINT8 rx_buf[MAX_PACKET_LEN];
 int main ()
 {
 
-	char dark = 0;
-
 	Init_Spi();
 
 	DDRC |= 0x01;
@@ -32,6 +31,14 @@ int main ()
 
 	RFM73_SetPower(POWER[0]);
 	SwitchToRxMode();
+
+	DDRD = 0b00000000;
+	PORTD = 0b00000100;
+
+
+	GIMSK=0b01000000; // init int0 by interrupt
+	MCUCR=0b00001000; // init int0 by 1->0
+
 
 	
 	while (1)
@@ -47,24 +54,8 @@ int main ()
 
 			SwitchToRxMode();  //switch to Rx mode
 
-			if (UNITNUMBER < 3){
-				_delay_ms(150);
-				INVBIT(PORTC, 0);
-			}else{
-				if(dark){
-					DOWNBIT(PORTC, 0);
-					_delay_ms(150);
-					dark = 0;
-				}else{
-					UPBIT(PORTC, 0);
-					_delay_ms(50);
-					DOWNBIT(PORTC, 0);
-					_delay_ms(50);
-					UPBIT(PORTC, 0);
-					_delay_ms(50);
-				}
-
-			}
+			_delay_ms(150);
+			INVBIT(PORTC, 0);
 		}
 		
 	}

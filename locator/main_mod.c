@@ -11,118 +11,33 @@
 
 UINT8 rx_buf[MAX_PACKET_LEN];
 
-#define COLORDDRPORT1 	DDRB
-#define COLORPORT1 		PORTB
-#define COLORDDRPORT2 	DDRA
-#define COLORPORT2 		PORTA
-#define COLORRED 	0x01
-#define COLORGREEN 	0x01
-#define COLORBLUE	0x02
+#define COLORYELOWDDRPORT 	DDRA
+#define COLORYELOWPORT 		PORTA
+#define COLORYELOW 			0xF0
 
-#define LEDPORT 	PORTC
-#define LEDDDRPORT	DDRC
+#define COLORGREENDDRPORT 	DDRC
+#define COLORGREENPORT 		PORTC
+#define COLORGREEN 			0xF0
+
+#define COLORBLUEDDRPORT 	DDRC
+#define COLORBLUEPORT 		PORTC
+#define COLORBLUE			0x0F
+
 #define ALLLEDON	0xFF
 #define ALLLEDOFF	0x00
 
 inline void shutDownLeds(){
-	COLORPORT1 = COLORPORT1 & (~(COLORRED));
-	COLORPORT1 = COLORPORT1 & (~(COLORBLUE));
-	COLORPORT2 = COLORPORT2 & (~(COLORGREEN));
-
-	LEDPORT = ALLLEDOFF;
+	COLORYELOWPORT 		&= (~COLORYELOW);
+	COLORGREENPORT 		&= (~COLORGREEN);
+	COLORBLUEPORT 		&= (~COLORBLUE);
 }
 
-
-inline void showPower(char num, char power){
-
-	if (!num){
-		shutDownLeds();
-		return;
-	}
-
-
-	// set COLOR
-	switch (num){
-		case 1:
-		case 4:
-		{
-			COLORPORT1 |= COLORRED;
-			break;
-		}
-		case 2:
-		case 5:
-		{
-			COLORPORT2 |= COLORGREEN;
-			break;
-		}
-		case 3:
-		case 6:
-		{
-			COLORPORT1 |= COLORBLUE;
-			break;
-		}
-		default:
-		{
-			COLORPORT1 |= (COLORRED | COLORBLUE);
-			COLORPORT2 |= COLORGREEN;
-			break;
-		}
-	}	
-	
-
-
-	// set POWER
-	if (num <= 3)
-		for (char i=0; i<power; i++)
-			UPBIT(LEDPORT, i);	
-
-	if (num >= 4)
-		for (char i=0; i<power; i++)
-			UPBIT(LEDPORT, i+4);	
-
+char fitPowerInByte(char power){
+	return ( ( (power << 4) & 0xF0 ) | power );
 }
 
 #define POINTNUMBER 1
 #define POINTPOWER 2
-
-
-inline void wowImAlive(){
-
-	static char point = 4;
-
-	if(point++ >= 4)
-		point = 0;
-
-	switch (point){
-		case 0:
-		{
-			COLORPORT1 |= COLORRED;
-			break;				
-		}
-		case 1:
-		{
-			COLORPORT2 |= COLORGREEN;
-			break;				
-		}
-		case 2:
-		{
-			COLORPORT1 |= COLORBLUE;
-			break;				
-		}
-		case 3:
-		{
-//			COLORPORT1 |= (COLORRED | COLORBLUE);
-			COLORPORT2 |= COLORGREEN;
-			break;				
-		}
-		default:
-			break;
-	}
-
-	UPBIT(LEDPORT, point);
-	UPBIT(LEDPORT, point+4);
-}
-
 
 int main ()
 {
@@ -130,14 +45,13 @@ int main ()
 	RFM73_Initialize();
 	SwitchToRxMode();
 
-	COLORDDRPORT1 |= (COLORRED | COLORBLUE);
-	COLORPORT1 |= (COLORRED | COLORBLUE);
-	COLORDDRPORT2 |= COLORGREEN;
-	COLORPORT2 |= COLORGREEN;
+	COLORYELOWDDRPORT 	|= COLORYELOW;
+	COLORYELOWPORT 		|= COLORYELOW;
+	COLORGREENDDRPORT 	|= COLORGREEN;
+	COLORGREENPORT 		|= COLORGREEN;
+	COLORBLUEDDRPORT 	|= COLORBLUE;
+	COLORBLUEPORT 		|= COLORBLUE;
 
-
-	LEDDDRPORT = ALLLEDON;
-	LEDPORT = ALLLEDOFF;
 
 
 _delay_ms(2000);
@@ -153,17 +67,16 @@ showPower(5,4);
 _delay_ms(2000);
 */
 
-
+#define POWERCOUNT  4
+#define NOSIGNAL 5
+#define UNITCOUNT 6
 
 	while (1)
 	{
-		char showed_point = 0;
-		char less_power[6];
-		for (char j=0; j<6; j++) less_power[j] = 5;
+		char less_power[UNITCOUNT];
+		for (char j=0; j<UNITCOUNT; j++) less_power[j] = NOSIGNAL;
 
-
-
-		// get statistic 
+		// get statistic of unit power 
 		for(char i = 0; i < 96; i++){
 			_delay_ms(10);
 
@@ -174,17 +87,24 @@ _delay_ms(2000);
 			}
 		}
 
-		showPower(ALLLEDOFF, ALLLEDOFF);
+		// show statistic
+		shutDownLeds();
 
-		for (char n=0; n<6; n++){
-			if (less_power[n] != 5){
-				showPower(n+1, 4-less_power[n]);
-				showed_point++;
-			}
+		for (char n=0; n < (UNITCOUNT / 2); n++){
+			if (less_power[n*2] < less_power[n*2 + 1])
+				less_power[n] = less_power[n*2];
+			else
+				less_power[n] = less_power[n*2 +1]; 
 		}
 
-		if(!showed_point)
-			wowImAlive();
+		char power = fitPowerInByte(POWERCOUNT - less_power[0]);
+		COLORYELOWPORT &= (power | (~COLORYELOW));
+
+		power = fitPowerInByte(POWERCOUNT - less_power[1]);
+		COLORGREENPORT &= (power | (~COLORGREEN));
+
+		power = fitPowerInByte(POWERCOUNT - less_power[2]);
+		COLORBLUEPORT &= (power | (~COLORBLUE));
 	}
 
 	return 0;
