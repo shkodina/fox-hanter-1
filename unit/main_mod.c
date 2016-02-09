@@ -9,7 +9,7 @@
 #define UPBIT(port, bit) port = port | (1<<bit);
 #define DOWNBIT(port, bit) port = port & (~(1<<bit));
 
-#define UNITNUMBER 5 // change this from 0 to 5 [0..5]
+#define UNITNUMBER 2 // change this from 0 to 5 [0..5]
 #define FRAMEBORDER '*'
 #define POWERPOSITION  2
 #define POWERCOUNT  4
@@ -24,32 +24,35 @@ UINT8 tx_buf[4] = {	FRAMEBORDER, UNITNUMBER, 0x00, FRAMEBORDER};
 
 UINT8 rx_buf[MAX_PACKET_LEN];
 
-void initInt0ToOff(){
-	GIMSK=0b01000000; // init int0 by interrupt
-	//MCUCR=0b00000100; // init int0 by 1->0
-	MCUCR=0b00001000; // init int0 by 1->0
-}
 
-void initInt0ToON(){
-	GIMSK=0b01000000; // init int0 by interrupt
-	MCUCR=0b00000000; // init int0 by 0->0
-}
-
-		
-
-ISR(INT0_vect)
+void SetupTIMER1 (void)
 {
-	cli();
-	
-	if (state == ON){ // gotosleep
-		initInt0ToON();
-		state = OFF;
-	}else{ // wake up
-		initInt0ToOff();
-		state = ON;
-		sei();
-	}
+     TCCR1B = (1<<CS12);
+     TCNT1 = 65536-50;        
+     TIMSK |= (1<<TOIE1); // разрешим прерывание по таймеру
 }
+
+
+ISR (TIMER1_OVF_vect)
+{
+	if (PIND == 0){
+		if (state == ON){ // gotosleep
+			DOWNBIT(PORTC, 0);
+			state = OFF;
+		}else{ // wake up
+			UPBIT(PORTC, 0);
+			state = ON;
+		}
+		_delay_ms(2000);
+	}
+	// run timer
+	TCNT1 = 65536 - 500; //  31220;
+    TCCR1B = (1<<CS12);
+    TIMSK |= (1<<TOIE1);
+
+
+}
+
 
 
 int main ()
@@ -68,34 +71,33 @@ int main ()
 	DDRD = 0b00000000;
 	PORTD = 0b00000100;
 
-
-	initInt0ToOff();
+	SetupTIMER1();
+	sei();
 
 	sleep_enable();
 
 	
 	while (1)
 	{
-		SwitchToTxMode();
-		for(char i=0;i<POWERCOUNT;i++)
-		{
-			RFM73_SetPower(POWER[i]);
-			tx_buf[POWERPOSITION] = POWER[i];
-
-			SwitchToTxMode();
-			Send_Packet(W_TX_PAYLOAD_NOACK_CMD,tx_buf,4);
-
-			SwitchToRxMode();  //switch to Rx mode
-
-			_delay_ms(150);
-			INVBIT(PORTC, 0);
-		}
-
 		if (state == OFF){
 			DOWNBIT(PORTC, 0);
-			_delay_ms(10000);
-			sei();
 			sleep_cpu();
+		} else {
+			SwitchToTxMode();
+			for(char i=0;i<POWERCOUNT;i++)
+			{
+				RFM73_SetPower(POWER[i]);
+				tx_buf[POWERPOSITION] = POWER[i];
+
+				SwitchToTxMode();
+				Send_Packet(W_TX_PAYLOAD_NOACK_CMD,tx_buf,4);
+
+				SwitchToRxMode();  //switch to Rx mode
+
+				_delay_ms(150);
+				INVBIT(PORTC, 0);
+			}
+
 		}
 		
 	}

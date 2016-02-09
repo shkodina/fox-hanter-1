@@ -3,49 +3,49 @@ main_mod.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         000004da  00000000  00000000  00000094  2**1
+  0 .text         000004d2  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000084  00800060  000004da  0000056e  2**0
+  1 .data         00000084  00800060  000004d2  00000566  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000021  008000e4  008000e4  000005f2  2**0
+  2 .bss          00000021  008000e4  008000e4  000005ea  2**0
                   ALLOC
-  3 .stab         000006cc  00000000  00000000  000005f4  2**2
+  3 .stab         000006cc  00000000  00000000  000005ec  2**2
                   CONTENTS, READONLY, DEBUGGING
-  4 .stabstr      00000085  00000000  00000000  00000cc0  2**0
+  4 .stabstr      00000085  00000000  00000000  00000cb8  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_aranges 00000040  00000000  00000000  00000d45  2**0
+  5 .debug_aranges 00000040  00000000  00000000  00000d3d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_pubnames 000001d3  00000000  00000000  00000d85  2**0
+  6 .debug_pubnames 000001c0  00000000  00000000  00000d7d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_info   0000095d  00000000  00000000  00000f58  2**0
+  7 .debug_info   00000949  00000000  00000000  00000f3d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_abbrev 000003e1  00000000  00000000  000018b5  2**0
+  8 .debug_abbrev 000003f5  00000000  00000000  00001886  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_line   00000819  00000000  00000000  00001c96  2**0
+  9 .debug_line   00000812  00000000  00000000  00001c7b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_frame  00000140  00000000  00000000  000024b0  2**2
+ 10 .debug_frame  00000130  00000000  00000000  00002490  2**2
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_str    000002a1  00000000  00000000  000025f0  2**0
+ 11 .debug_str    00000283  00000000  00000000  000025c0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_loc    00000591  00000000  00000000  00002891  2**0
+ 12 .debug_loc    000005d9  00000000  00000000  00002843  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_pubtypes 00000070  00000000  00000000  00002e22  2**0
+ 13 .debug_pubtypes 00000070  00000000  00000000  00002e1c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_ranges 00000018  00000000  00000000  00002e92  2**0
+ 14 .debug_ranges 00000018  00000000  00000000  00002e8c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
-   2:	36 c0       	rjmp	.+108    	; 0x70 <__vector_1>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
    4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
    6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
    8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
    a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
    c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
    e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
-  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  10:	30 c0       	rjmp	.+96     	; 0x72 <__vector_8>
   12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
   14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
   16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
@@ -69,7 +69,7 @@ Disassembly of section .text:
   32:	10 e0       	ldi	r17, 0x00	; 0
   34:	a0 e6       	ldi	r26, 0x60	; 96
   36:	b0 e0       	ldi	r27, 0x00	; 0
-  38:	ea ed       	ldi	r30, 0xDA	; 218
+  38:	e2 ed       	ldi	r30, 0xD2	; 210
   3a:	f4 e0       	ldi	r31, 0x04	; 4
   3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
   3e:	05 90       	lpm	r0, Z+
@@ -91,1080 +91,1070 @@ Disassembly of section .text:
   52:	a5 30       	cpi	r26, 0x05	; 5
   54:	b1 07       	cpc	r27, r17
   56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
-  58:	3b d0       	rcall	.+118    	; 0xd0 <main>
-  5a:	3d c2       	rjmp	.+1146   	; 0x4d6 <_exit>
+  58:	3f d0       	rcall	.+126    	; 0xd8 <main>
+  5a:	39 c2       	rjmp	.+1138   	; 0x4ce <_exit>
 
 0000005c <__bad_interrupt>:
   5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
 
-0000005e <initInt0ToOff>:
-UINT8 tx_buf[4] = {	FRAMEBORDER, UNITNUMBER, 0x00, FRAMEBORDER};
-
+0000005e <SetupTIMER1>:
 UINT8 rx_buf[MAX_PACKET_LEN];
 
-void initInt0ToOff(){
-	GIMSK=0b01000000; // init int0 by interrupt
-  5e:	80 e4       	ldi	r24, 0x40	; 64
-  60:	8b bf       	out	0x3b, r24	; 59
-	MCUCR=0b00001000; // init int0 by 1->0
-  62:	88 e0       	ldi	r24, 0x08	; 8
-  64:	85 bf       	out	0x35, r24	; 53
-}
-  66:	08 95       	ret
 
-00000068 <initInt0ToON>:
-
-void initInt0ToON(){
-	GIMSK=0b01000000; // init int0 by interrupt
-  68:	80 e4       	ldi	r24, 0x40	; 64
-  6a:	8b bf       	out	0x3b, r24	; 59
-	MCUCR=0b00000000; // init int0 by 0->0
-  6c:	15 be       	out	0x35, r1	; 53
-}
-  6e:	08 95       	ret
-
-00000070 <__vector_1>:
-
-		
-
-ISR(INT0_vect)
+void SetupTIMER1 (void)
 {
-  70:	1f 92       	push	r1
-  72:	0f 92       	push	r0
-  74:	0f b6       	in	r0, 0x3f	; 63
-  76:	0f 92       	push	r0
-  78:	11 24       	eor	r1, r1
-  7a:	2f 93       	push	r18
-  7c:	3f 93       	push	r19
-  7e:	4f 93       	push	r20
-  80:	5f 93       	push	r21
-  82:	6f 93       	push	r22
-  84:	7f 93       	push	r23
-  86:	8f 93       	push	r24
-  88:	9f 93       	push	r25
-  8a:	af 93       	push	r26
-  8c:	bf 93       	push	r27
-  8e:	ef 93       	push	r30
-  90:	ff 93       	push	r31
-	cli();
-  92:	f8 94       	cli
-	
-	if (state == ON){ // gotosleep
-  94:	80 91 68 00 	lds	r24, 0x0068
-  98:	81 30       	cpi	r24, 0x01	; 1
-  9a:	21 f4       	brne	.+8      	; 0xa4 <__vector_1+0x34>
-		initInt0ToON();
-  9c:	e5 df       	rcall	.-54     	; 0x68 <initInt0ToON>
-		state = OFF;
-  9e:	10 92 68 00 	sts	0x0068, r1
-  a2:	05 c0       	rjmp	.+10     	; 0xae <__vector_1+0x3e>
-	}else{ // wake up
-		initInt0ToOff();
-  a4:	dc df       	rcall	.-72     	; 0x5e <initInt0ToOff>
-		state = ON;
-  a6:	81 e0       	ldi	r24, 0x01	; 1
-  a8:	80 93 68 00 	sts	0x0068, r24
-		sei();
-  ac:	78 94       	sei
-	}
+     TCCR1B = (1<<CS12);
+  5e:	84 e0       	ldi	r24, 0x04	; 4
+  60:	8e bd       	out	0x2e, r24	; 46
+     TCNT1 = 65536-50;        
+  62:	8e ec       	ldi	r24, 0xCE	; 206
+  64:	9f ef       	ldi	r25, 0xFF	; 255
+  66:	9d bd       	out	0x2d, r25	; 45
+  68:	8c bd       	out	0x2c, r24	; 44
+     TIMSK |= (1<<TOIE1); // ðàçðåøèì ïðåðûâàíèå ïî òàéìåðó
+  6a:	89 b7       	in	r24, 0x39	; 57
+  6c:	84 60       	ori	r24, 0x04	; 4
+  6e:	89 bf       	out	0x39, r24	; 57
 }
-  ae:	ff 91       	pop	r31
-  b0:	ef 91       	pop	r30
-  b2:	bf 91       	pop	r27
-  b4:	af 91       	pop	r26
-  b6:	9f 91       	pop	r25
-  b8:	8f 91       	pop	r24
-  ba:	7f 91       	pop	r23
-  bc:	6f 91       	pop	r22
-  be:	5f 91       	pop	r21
-  c0:	4f 91       	pop	r20
-  c2:	3f 91       	pop	r19
-  c4:	2f 91       	pop	r18
-  c6:	0f 90       	pop	r0
-  c8:	0f be       	out	0x3f, r0	; 63
-  ca:	0f 90       	pop	r0
-  cc:	1f 90       	pop	r1
-  ce:	18 95       	reti
+  70:	08 95       	ret
 
-000000d0 <main>:
+00000072 <__vector_8>:
 
 
-int main ()
+ISR (TIMER1_OVF_vect)
 {
-  d0:	0f 93       	push	r16
-  d2:	1f 93       	push	r17
-  d4:	cf 93       	push	r28
-  d6:	df 93       	push	r29
-
-	Init_Spi();
-  d8:	3b d0       	rcall	.+118    	; 0x150 <Init_Spi>
-
-	DDRC |= 0x01;
-  da:	a0 9a       	sbi	0x14, 0	; 20
-	PORTC |= 0x01;
-  dc:	a8 9a       	sbi	0x15, 0	; 21
-
-	RFM73_Initialize();
-  de:	db d0       	rcall	.+438    	; 0x296 <RFM73_Initialize>
-
-	RFM73_SetPower(POWER[0]);
-  e0:	80 e0       	ldi	r24, 0x00	; 0
-  e2:	a9 d1       	rcall	.+850    	; 0x436 <RFM73_SetPower>
-	SwitchToRxMode();
-  e4:	a7 d0       	rcall	.+334    	; 0x234 <SwitchToRxMode>
-
-	DDRD = 0b00000000;
-  e6:	11 ba       	out	0x11, r1	; 17
-	PORTD = 0b00000100;
-  e8:	84 e0       	ldi	r24, 0x04	; 4
-  ea:	82 bb       	out	0x12, r24	; 18
-
-
-	initInt0ToOff();
-  ec:	b8 df       	rcall	.-144    	; 0x5e <initInt0ToOff>
-
-	sleep_enable();
-  ee:	85 b7       	in	r24, 0x35	; 53
-  f0:	80 68       	ori	r24, 0x80	; 128
-  f2:	85 bf       	out	0x35, r24	; 53
-			Send_Packet(W_TX_PAYLOAD_NOACK_CMD,tx_buf,4);
-
-			SwitchToRxMode();  //switch to Rx mode
-
-			_delay_ms(150);
-			INVBIT(PORTC, 0);
-  f4:	11 e0       	ldi	r17, 0x01	; 1
-	sleep_enable();
-
-	
-	while (1)
-	{
-		SwitchToTxMode();
-  f6:	af d0       	rcall	.+350    	; 0x256 <SwitchToTxMode>
-  f8:	c0 e6       	ldi	r28, 0x60	; 96
-  fa:	d0 e0       	ldi	r29, 0x00	; 0
-		for(char i=0;i<POWERCOUNT;i++)
-		{
-			RFM73_SetPower(POWER[i]);
-  fc:	09 91       	ld	r16, Y+
-  fe:	80 2f       	mov	r24, r16
- 100:	9a d1       	rcall	.+820    	; 0x436 <RFM73_SetPower>
-			tx_buf[POWERPOSITION] = POWER[i];
- 102:	00 93 66 00 	sts	0x0066, r16
-
-			SwitchToTxMode();
- 106:	a7 d0       	rcall	.+334    	; 0x256 <SwitchToTxMode>
-			Send_Packet(W_TX_PAYLOAD_NOACK_CMD,tx_buf,4);
- 108:	80 eb       	ldi	r24, 0xB0	; 176
- 10a:	64 e6       	ldi	r22, 0x64	; 100
- 10c:	70 e0       	ldi	r23, 0x00	; 0
- 10e:	44 e0       	ldi	r20, 0x04	; 4
- 110:	9a d1       	rcall	.+820    	; 0x446 <Send_Packet>
-
-			SwitchToRxMode();  //switch to Rx mode
- 112:	90 d0       	rcall	.+288    	; 0x234 <SwitchToRxMode>
+  72:	1f 92       	push	r1
+  74:	0f 92       	push	r0
+  76:	0f b6       	in	r0, 0x3f	; 63
+  78:	0f 92       	push	r0
+  7a:	11 24       	eor	r1, r1
+  7c:	8f 93       	push	r24
+  7e:	9f 93       	push	r25
+  80:	af 93       	push	r26
+  82:	bf 93       	push	r27
+	if (PIND == 0){
+  84:	80 b3       	in	r24, 0x10	; 16
+  86:	88 23       	and	r24, r24
+  88:	a9 f4       	brne	.+42     	; 0xb4 <__vector_8+0x42>
+		if (state == ON){ // gotosleep
+  8a:	80 91 68 00 	lds	r24, 0x0068
+  8e:	81 30       	cpi	r24, 0x01	; 1
+  90:	21 f4       	brne	.+8      	; 0x9a <__vector_8+0x28>
+			DOWNBIT(PORTC, 0);
+  92:	a8 98       	cbi	0x15, 0	; 21
+			state = OFF;
+  94:	10 92 68 00 	sts	0x0068, r1
+  98:	04 c0       	rjmp	.+8      	; 0xa2 <__vector_8+0x30>
+		}else{ // wake up
+			UPBIT(PORTC, 0);
+  9a:	a8 9a       	sbi	0x15, 0	; 21
+			state = ON;
+  9c:	81 e0       	ldi	r24, 0x01	; 1
+  9e:	80 93 68 00 	sts	0x0068, r24
 	#else
 		//round up by default
 		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
 	#endif
 
 	__builtin_avr_delay_cycles(__ticks_dc);
- 114:	8b e7       	ldi	r24, 0x7B	; 123
- 116:	92 e9       	ldi	r25, 0x92	; 146
- 118:	01 97       	sbiw	r24, 0x01	; 1
- 11a:	f1 f7       	brne	.-4      	; 0x118 <main+0x48>
- 11c:	00 c0       	rjmp	.+0      	; 0x11e <main+0x4e>
- 11e:	00 00       	nop
+  a2:	8f e7       	ldi	r24, 0x7F	; 127
+  a4:	9a e1       	ldi	r25, 0x1A	; 26
+  a6:	a6 e0       	ldi	r26, 0x06	; 6
+  a8:	81 50       	subi	r24, 0x01	; 1
+  aa:	90 40       	sbci	r25, 0x00	; 0
+  ac:	a0 40       	sbci	r26, 0x00	; 0
+  ae:	e1 f7       	brne	.-8      	; 0xa8 <__vector_8+0x36>
+  b0:	00 c0       	rjmp	.+0      	; 0xb2 <__vector_8+0x40>
+  b2:	00 00       	nop
+		}
+		_delay_ms(2000);
+	}
+	// run timer
+	TCNT1 = 65536 - 500; //  31220;
+  b4:	8c e0       	ldi	r24, 0x0C	; 12
+  b6:	9e ef       	ldi	r25, 0xFE	; 254
+  b8:	9d bd       	out	0x2d, r25	; 45
+  ba:	8c bd       	out	0x2c, r24	; 44
+    TCCR1B = (1<<CS12);
+  bc:	84 e0       	ldi	r24, 0x04	; 4
+  be:	8e bd       	out	0x2e, r24	; 46
+    TIMSK |= (1<<TOIE1);
+  c0:	89 b7       	in	r24, 0x39	; 57
+  c2:	84 60       	ori	r24, 0x04	; 4
+  c4:	89 bf       	out	0x39, r24	; 57
 
-			_delay_ms(150);
-			INVBIT(PORTC, 0);
- 120:	85 b3       	in	r24, 0x15	; 21
- 122:	81 27       	eor	r24, r17
- 124:	85 bb       	out	0x15, r24	; 21
+
+}
+  c6:	bf 91       	pop	r27
+  c8:	af 91       	pop	r26
+  ca:	9f 91       	pop	r25
+  cc:	8f 91       	pop	r24
+  ce:	0f 90       	pop	r0
+  d0:	0f be       	out	0x3f, r0	; 63
+  d2:	0f 90       	pop	r0
+  d4:	1f 90       	pop	r1
+  d6:	18 95       	reti
+
+000000d8 <main>:
+
+
+
+int main ()
+{
+  d8:	0f 93       	push	r16
+  da:	1f 93       	push	r17
+  dc:	cf 93       	push	r28
+  de:	df 93       	push	r29
+
+	Init_Spi();
+  e0:	33 d0       	rcall	.+102    	; 0x148 <Init_Spi>
+
+	DDRC |= 0x01;
+  e2:	a0 9a       	sbi	0x14, 0	; 20
+	PORTC |= 0x01;
+  e4:	a8 9a       	sbi	0x15, 0	; 21
+
+	RFM73_Initialize();
+  e6:	d3 d0       	rcall	.+422    	; 0x28e <RFM73_Initialize>
+
+	RFM73_SetPower(POWER[0]);
+  e8:	80 e0       	ldi	r24, 0x00	; 0
+  ea:	a1 d1       	rcall	.+834    	; 0x42e <RFM73_SetPower>
+	SwitchToRxMode();
+  ec:	9f d0       	rcall	.+318    	; 0x22c <SwitchToRxMode>
+
+	DDRD = 0b00000000;
+  ee:	11 ba       	out	0x11, r1	; 17
+	PORTD = 0b00000100;
+  f0:	84 e0       	ldi	r24, 0x04	; 4
+  f2:	82 bb       	out	0x12, r24	; 18
+
+	SetupTIMER1();
+  f4:	b4 df       	rcall	.-152    	; 0x5e <SetupTIMER1>
+	sei();
+  f6:	78 94       	sei
+
+	sleep_enable();
+  f8:	85 b7       	in	r24, 0x35	; 53
+  fa:	80 68       	ori	r24, 0x80	; 128
+  fc:	85 bf       	out	0x35, r24	; 53
+				Send_Packet(W_TX_PAYLOAD_NOACK_CMD,tx_buf,4);
+
+				SwitchToRxMode();  //switch to Rx mode
+
+				_delay_ms(150);
+				INVBIT(PORTC, 0);
+  fe:	11 e0       	ldi	r17, 0x01	; 1
+	sleep_enable();
 
 	
 	while (1)
 	{
-		SwitchToTxMode();
-		for(char i=0;i<POWERCOUNT;i++)
- 126:	90 e0       	ldi	r25, 0x00	; 0
- 128:	c4 36       	cpi	r28, 0x64	; 100
- 12a:	d9 07       	cpc	r29, r25
- 12c:	39 f7       	brne	.-50     	; 0xfc <main+0x2c>
-
-			_delay_ms(150);
-			INVBIT(PORTC, 0);
-		}
-
 		if (state == OFF){
- 12e:	80 91 68 00 	lds	r24, 0x0068
- 132:	88 23       	and	r24, r24
- 134:	01 f7       	brne	.-64     	; 0xf6 <main+0x26>
+ 100:	80 91 68 00 	lds	r24, 0x0068
+ 104:	88 23       	and	r24, r24
+ 106:	19 f4       	brne	.+6      	; 0x10e <main+0x36>
 			DOWNBIT(PORTC, 0);
- 136:	a8 98       	cbi	0x15, 0	; 21
- 138:	8f e7       	ldi	r24, 0x7F	; 127
- 13a:	94 e8       	ldi	r25, 0x84	; 132
- 13c:	ae e1       	ldi	r26, 0x1E	; 30
- 13e:	81 50       	subi	r24, 0x01	; 1
- 140:	90 40       	sbci	r25, 0x00	; 0
- 142:	a0 40       	sbci	r26, 0x00	; 0
- 144:	e1 f7       	brne	.-8      	; 0x13e <main+0x6e>
- 146:	00 c0       	rjmp	.+0      	; 0x148 <main+0x78>
- 148:	00 00       	nop
-			_delay_ms(10000);
-			sei();
- 14a:	78 94       	sei
+ 108:	a8 98       	cbi	0x15, 0	; 21
 			sleep_cpu();
- 14c:	88 95       	sleep
- 14e:	d3 cf       	rjmp	.-90     	; 0xf6 <main+0x26>
+ 10a:	88 95       	sleep
+ 10c:	f9 cf       	rjmp	.-14     	; 0x100 <main+0x28>
+		} else {
+			SwitchToTxMode();
+ 10e:	9f d0       	rcall	.+318    	; 0x24e <SwitchToTxMode>
+ 110:	c0 e6       	ldi	r28, 0x60	; 96
+ 112:	d0 e0       	ldi	r29, 0x00	; 0
+			for(char i=0;i<POWERCOUNT;i++)
+			{
+				RFM73_SetPower(POWER[i]);
+ 114:	09 91       	ld	r16, Y+
+ 116:	80 2f       	mov	r24, r16
+ 118:	8a d1       	rcall	.+788    	; 0x42e <RFM73_SetPower>
+				tx_buf[POWERPOSITION] = POWER[i];
+ 11a:	00 93 66 00 	sts	0x0066, r16
 
-00000150 <Init_Spi>:
+				SwitchToTxMode();
+ 11e:	97 d0       	rcall	.+302    	; 0x24e <SwitchToTxMode>
+				Send_Packet(W_TX_PAYLOAD_NOACK_CMD,tx_buf,4);
+ 120:	80 eb       	ldi	r24, 0xB0	; 176
+ 122:	64 e6       	ldi	r22, 0x64	; 100
+ 124:	70 e0       	ldi	r23, 0x00	; 0
+ 126:	44 e0       	ldi	r20, 0x04	; 4
+ 128:	8a d1       	rcall	.+788    	; 0x43e <Send_Packet>
+
+				SwitchToRxMode();  //switch to Rx mode
+ 12a:	80 d0       	rcall	.+256    	; 0x22c <SwitchToRxMode>
+ 12c:	8b e7       	ldi	r24, 0x7B	; 123
+ 12e:	92 e9       	ldi	r25, 0x92	; 146
+ 130:	01 97       	sbiw	r24, 0x01	; 1
+ 132:	f1 f7       	brne	.-4      	; 0x130 <main+0x58>
+ 134:	00 c0       	rjmp	.+0      	; 0x136 <main+0x5e>
+ 136:	00 00       	nop
+
+				_delay_ms(150);
+				INVBIT(PORTC, 0);
+ 138:	85 b3       	in	r24, 0x15	; 21
+ 13a:	81 27       	eor	r24, r17
+ 13c:	85 bb       	out	0x15, r24	; 21
+		if (state == OFF){
+			DOWNBIT(PORTC, 0);
+			sleep_cpu();
+		} else {
+			SwitchToTxMode();
+			for(char i=0;i<POWERCOUNT;i++)
+ 13e:	90 e0       	ldi	r25, 0x00	; 0
+ 140:	c4 36       	cpi	r28, 0x64	; 100
+ 142:	d9 07       	cpc	r29, r25
+ 144:	39 f7       	brne	.-50     	; 0x114 <main+0x3c>
+ 146:	dc cf       	rjmp	.-72     	; 0x100 <main+0x28>
+
+00000148 <Init_Spi>:
 // SPI Type: Master
 // SPI Clock Rate: 250,000 kHz
 // SPI Clock Phase: Cycle Half
 // SPI Clock Polarity: Low
 // SPI Data Order: MSB First
 PORTB=0x00;
- 150:	18 ba       	out	0x18, r1	; 24
-DDRB=0x2C;
- 152:	8c e2       	ldi	r24, 0x2C	; 44
- 154:	87 bb       	out	0x17, r24	; 23
+ 148:	18 ba       	out	0x18, r1	; 24
+DDRB=0x3E;
+ 14a:	8e e3       	ldi	r24, 0x3E	; 62
+ 14c:	87 bb       	out	0x17, r24	; 23
 
 SPCR=0x50;
- 156:	80 e5       	ldi	r24, 0x50	; 80
- 158:	8d b9       	out	0x0d, r24	; 13
+ 14e:	80 e5       	ldi	r24, 0x50	; 80
+ 150:	8d b9       	out	0x0d, r24	; 13
 SPSR=0x00;
- 15a:	1e b8       	out	0x0e, r1	; 14
+ 152:	1e b8       	out	0x0e, r1	; 14
 
 //PORTB=0x00;
 //DDRB=0xB8;
 //SPCR=0x51;
 SPSR=0x00;
- 15c:	1e b8       	out	0x0e, r1	; 14
+ 154:	1e b8       	out	0x0e, r1	; 14
 }
- 15e:	08 95       	ret
+ 156:	08 95       	ret
 
-00000160 <ReadWrite_Spi>:
+00000158 <ReadWrite_Spi>:
 
 UINT8 ReadWrite_Spi(UINT8 value)
 {
 
 	SPDR = value;
- 160:	8f b9       	out	0x0f, r24	; 15
+ 158:	8f b9       	out	0x0f, r24	; 15
 	while(!(SPSR & (1<<SPIF)));
- 162:	77 9b       	sbis	0x0e, 7	; 14
- 164:	fe cf       	rjmp	.-4      	; 0x162 <ReadWrite_Spi+0x2>
+ 15a:	77 9b       	sbis	0x0e, 7	; 14
+ 15c:	fe cf       	rjmp	.-4      	; 0x15a <ReadWrite_Spi+0x2>
 //	if (SPDR)
 //		PORTC = PORTC ^ (1<<7);
 	return SPDR;
- 166:	8f b1       	in	r24, 0x0f	; 15
+ 15e:	8f b1       	in	r24, 0x0f	; 15
 		DOWNBIT(SPIPORT,SCK);//SCK = 0;            		  // ..then set SCK low again
 	}
 	return(value);           		  // return read UINT8
 */
 
 }
- 168:	08 95       	ret
+ 160:	08 95       	ret
 
-0000016a <SPI_Write_Reg>:
+00000162 <SPI_Write_Reg>:
                                                             
 Description:                                                
 	Writes value 'value' to register 'reg'              
 **************************************************/        
 void SPI_Write_Reg(UINT8 reg, UINT8 value)                 
 {
- 16a:	df 93       	push	r29
- 16c:	cf 93       	push	r28
- 16e:	0f 92       	push	r0
- 170:	cd b7       	in	r28, 0x3d	; 61
- 172:	de b7       	in	r29, 0x3e	; 62
+ 162:	df 93       	push	r29
+ 164:	cf 93       	push	r28
+ 166:	0f 92       	push	r0
+ 168:	cd b7       	in	r28, 0x3d	; 61
+ 16a:	de b7       	in	r29, 0x3e	; 62
 	DOWNBIT(PORTB, CSN);                   // CSN low, init SPI transaction
- 174:	c2 98       	cbi	0x18, 2	; 24
+ 16c:	c2 98       	cbi	0x18, 2	; 24
 	op_status = ReadWrite_Spi(reg);      // select register
- 176:	69 83       	std	Y+1, r22	; 0x01
- 178:	f3 df       	rcall	.-26     	; 0x160 <ReadWrite_Spi>
- 17a:	80 93 04 01 	sts	0x0104, r24
+ 16e:	69 83       	std	Y+1, r22	; 0x01
+ 170:	f3 df       	rcall	.-26     	; 0x158 <ReadWrite_Spi>
+ 172:	80 93 04 01 	sts	0x0104, r24
 	ReadWrite_Spi(value);             // ..and write value to it..
- 17e:	69 81       	ldd	r22, Y+1	; 0x01
- 180:	86 2f       	mov	r24, r22
- 182:	ee df       	rcall	.-36     	; 0x160 <ReadWrite_Spi>
+ 176:	69 81       	ldd	r22, Y+1	; 0x01
+ 178:	86 2f       	mov	r24, r22
+ 17a:	ee df       	rcall	.-36     	; 0x158 <ReadWrite_Spi>
 	UPBIT(PORTB, CSN);                   // CSN high again
- 184:	c2 9a       	sbi	0x18, 2	; 24
+ 17c:	c2 9a       	sbi	0x18, 2	; 24
 }                                                         
- 186:	0f 90       	pop	r0
- 188:	cf 91       	pop	r28
- 18a:	df 91       	pop	r29
- 18c:	08 95       	ret
+ 17e:	0f 90       	pop	r0
+ 180:	cf 91       	pop	r28
+ 182:	df 91       	pop	r29
+ 184:	08 95       	ret
 
-0000018e <SPI_Read_Reg>:
+00000186 <SPI_Read_Reg>:
 	Read one UINT8 from BK2421 register, 'reg'           
 **************************************************/        
 UINT8 SPI_Read_Reg(UINT8 reg)                               
 {                                                           
 	UINT8 value;
 	DOWNBIT(PORTB, CSN);               // CSN low, initialize SPI communication...
- 18e:	c2 98       	cbi	0x18, 2	; 24
+ 186:	c2 98       	cbi	0x18, 2	; 24
 	op_status=ReadWrite_Spi(reg);            // Select register to read from..
- 190:	e7 df       	rcall	.-50     	; 0x160 <ReadWrite_Spi>
- 192:	80 93 04 01 	sts	0x0104, r24
+ 188:	e7 df       	rcall	.-50     	; 0x158 <ReadWrite_Spi>
+ 18a:	80 93 04 01 	sts	0x0104, r24
 	value = ReadWrite_Spi(0);    // ..then read register value
- 196:	80 e0       	ldi	r24, 0x00	; 0
- 198:	e3 df       	rcall	.-58     	; 0x160 <ReadWrite_Spi>
+ 18e:	80 e0       	ldi	r24, 0x00	; 0
+ 190:	e3 df       	rcall	.-58     	; 0x158 <ReadWrite_Spi>
 	UPBIT(PORTB, CSN);                // CSN high, terminate SPI communication
- 19a:	c2 9a       	sbi	0x18, 2	; 24
+ 192:	c2 9a       	sbi	0x18, 2	; 24
 
 	return(value);        // return register value
 }                                                           
- 19c:	08 95       	ret
+ 194:	08 95       	ret
 
-0000019e <SPI_Read_Buf>:
+00000196 <SPI_Read_Buf>:
                                                             
 Description:                                                
 	Reads 'length' #of length from register 'reg'         
 /**************************************************/        
 void SPI_Read_Buf(UINT8 reg, UINT8 *pBuf, UINT8 length)     
 {                                                           
- 19e:	ef 92       	push	r14
- 1a0:	ff 92       	push	r15
- 1a2:	0f 93       	push	r16
- 1a4:	1f 93       	push	r17
- 1a6:	df 93       	push	r29
- 1a8:	cf 93       	push	r28
- 1aa:	0f 92       	push	r0
- 1ac:	cd b7       	in	r28, 0x3d	; 61
- 1ae:	de b7       	in	r29, 0x3e	; 62
- 1b0:	16 2f       	mov	r17, r22
- 1b2:	04 2f       	mov	r16, r20
+ 196:	ef 92       	push	r14
+ 198:	ff 92       	push	r15
+ 19a:	0f 93       	push	r16
+ 19c:	1f 93       	push	r17
+ 19e:	df 93       	push	r29
+ 1a0:	cf 93       	push	r28
+ 1a2:	0f 92       	push	r0
+ 1a4:	cd b7       	in	r28, 0x3d	; 61
+ 1a6:	de b7       	in	r29, 0x3e	; 62
+ 1a8:	16 2f       	mov	r17, r22
+ 1aa:	04 2f       	mov	r16, r20
 	UINT8 status,byte_ctr;                              
                                                             
 	DOWNBIT(SPIPORT,CSN);//CSN = 0;                    		// Set CSN l
- 1b4:	c2 98       	cbi	0x18, 2	; 24
+ 1ac:	c2 98       	cbi	0x18, 2	; 24
 	status = ReadWrite_Spi(reg);       		// Select register to write, and read status UINT8
- 1b6:	79 83       	std	Y+1, r23	; 0x01
- 1b8:	d3 df       	rcall	.-90     	; 0x160 <ReadWrite_Spi>
+ 1ae:	79 83       	std	Y+1, r23	; 0x01
+ 1b0:	d3 df       	rcall	.-90     	; 0x158 <ReadWrite_Spi>
                                                             
 	for(byte_ctr=0;byte_ctr<length;byte_ctr++)           
- 1ba:	79 81       	ldd	r23, Y+1	; 0x01
- 1bc:	41 2f       	mov	r20, r17
- 1be:	57 2f       	mov	r21, r23
- 1c0:	7a 01       	movw	r14, r20
- 1c2:	05 c0       	rjmp	.+10     	; 0x1ce <SPI_Read_Buf+0x30>
+ 1b2:	79 81       	ldd	r23, Y+1	; 0x01
+ 1b4:	41 2f       	mov	r20, r17
+ 1b6:	57 2f       	mov	r21, r23
+ 1b8:	7a 01       	movw	r14, r20
+ 1ba:	05 c0       	rjmp	.+10     	; 0x1c6 <SPI_Read_Buf+0x30>
 		pBuf[byte_ctr] = ReadWrite_Spi(0);    // Perform ReadWrite_Spi to read UINT8 from RFM73 
- 1c4:	80 e0       	ldi	r24, 0x00	; 0
- 1c6:	cc df       	rcall	.-104    	; 0x160 <ReadWrite_Spi>
- 1c8:	f7 01       	movw	r30, r14
- 1ca:	81 93       	st	Z+, r24
- 1cc:	7f 01       	movw	r14, r30
+ 1bc:	80 e0       	ldi	r24, 0x00	; 0
+ 1be:	cc df       	rcall	.-104    	; 0x158 <ReadWrite_Spi>
+ 1c0:	f7 01       	movw	r30, r14
+ 1c2:	81 93       	st	Z+, r24
+ 1c4:	7f 01       	movw	r14, r30
 	UINT8 status,byte_ctr;                              
                                                             
 	DOWNBIT(SPIPORT,CSN);//CSN = 0;                    		// Set CSN l
 	status = ReadWrite_Spi(reg);       		// Select register to write, and read status UINT8
                                                             
 	for(byte_ctr=0;byte_ctr<length;byte_ctr++)           
- 1ce:	8e 2d       	mov	r24, r14
- 1d0:	81 1b       	sub	r24, r17
- 1d2:	80 17       	cp	r24, r16
- 1d4:	b8 f3       	brcs	.-18     	; 0x1c4 <SPI_Read_Buf+0x26>
+ 1c6:	8e 2d       	mov	r24, r14
+ 1c8:	81 1b       	sub	r24, r17
+ 1ca:	80 17       	cp	r24, r16
+ 1cc:	b8 f3       	brcs	.-18     	; 0x1bc <SPI_Read_Buf+0x26>
 		pBuf[byte_ctr] = ReadWrite_Spi(0);    // Perform ReadWrite_Spi to read UINT8 from RFM73 
                                                             
 	UPBIT(SPIPORT,CSN);//CSN = 1;                           // Set CSN high again
- 1d6:	c2 9a       	sbi	0x18, 2	; 24
+ 1ce:	c2 9a       	sbi	0x18, 2	; 24
                
 }                                                           
- 1d8:	0f 90       	pop	r0
- 1da:	cf 91       	pop	r28
- 1dc:	df 91       	pop	r29
- 1de:	1f 91       	pop	r17
- 1e0:	0f 91       	pop	r16
- 1e2:	ff 90       	pop	r15
- 1e4:	ef 90       	pop	r14
- 1e6:	08 95       	ret
+ 1d0:	0f 90       	pop	r0
+ 1d2:	cf 91       	pop	r28
+ 1d4:	df 91       	pop	r29
+ 1d6:	1f 91       	pop	r17
+ 1d8:	0f 91       	pop	r16
+ 1da:	ff 90       	pop	r15
+ 1dc:	ef 90       	pop	r14
+ 1de:	08 95       	ret
 
-000001e8 <SPI_Write_Buf>:
+000001e0 <SPI_Write_Buf>:
                                                             
 Description:                                                
 	Writes contents of buffer '*pBuf' to RFM73         
 /**************************************************/        
 void SPI_Write_Buf(UINT8 reg, UINT8 *pBuf, UINT8 length)    
 {                                                           
- 1e8:	ef 92       	push	r14
- 1ea:	ff 92       	push	r15
- 1ec:	0f 93       	push	r16
- 1ee:	1f 93       	push	r17
- 1f0:	df 93       	push	r29
- 1f2:	cf 93       	push	r28
- 1f4:	0f 92       	push	r0
- 1f6:	cd b7       	in	r28, 0x3d	; 61
- 1f8:	de b7       	in	r29, 0x3e	; 62
- 1fa:	16 2f       	mov	r17, r22
- 1fc:	04 2f       	mov	r16, r20
+ 1e0:	ef 92       	push	r14
+ 1e2:	ff 92       	push	r15
+ 1e4:	0f 93       	push	r16
+ 1e6:	1f 93       	push	r17
+ 1e8:	df 93       	push	r29
+ 1ea:	cf 93       	push	r28
+ 1ec:	0f 92       	push	r0
+ 1ee:	cd b7       	in	r28, 0x3d	; 61
+ 1f0:	de b7       	in	r29, 0x3e	; 62
+ 1f2:	16 2f       	mov	r17, r22
+ 1f4:	04 2f       	mov	r16, r20
 	UINT8 byte_ctr;                              
                                                             
 	DOWNBIT(SPIPORT,CSN);//CSN = 0;                   // Set CSN low, init SPI tranaction
- 1fe:	c2 98       	cbi	0x18, 2	; 24
+ 1f6:	c2 98       	cbi	0x18, 2	; 24
 	op_status = ReadWrite_Spi(reg);    // Select register to write to and read status UINT8
- 200:	79 83       	std	Y+1, r23	; 0x01
- 202:	ae df       	rcall	.-164    	; 0x160 <ReadWrite_Spi>
- 204:	80 93 04 01 	sts	0x0104, r24
+ 1f8:	79 83       	std	Y+1, r23	; 0x01
+ 1fa:	ae df       	rcall	.-164    	; 0x158 <ReadWrite_Spi>
+ 1fc:	80 93 04 01 	sts	0x0104, r24
 	for(byte_ctr=0; byte_ctr<length; byte_ctr++) // then write all UINT8 in buffer(*pBuf) 
- 208:	79 81       	ldd	r23, Y+1	; 0x01
- 20a:	41 2f       	mov	r20, r17
- 20c:	57 2f       	mov	r21, r23
- 20e:	7a 01       	movw	r14, r20
- 210:	04 c0       	rjmp	.+8      	; 0x21a <SPI_Write_Buf+0x32>
+ 200:	79 81       	ldd	r23, Y+1	; 0x01
+ 202:	41 2f       	mov	r20, r17
+ 204:	57 2f       	mov	r21, r23
+ 206:	7a 01       	movw	r14, r20
+ 208:	04 c0       	rjmp	.+8      	; 0x212 <SPI_Write_Buf+0x32>
 		ReadWrite_Spi(*pBuf++);                                    
- 212:	f7 01       	movw	r30, r14
- 214:	81 91       	ld	r24, Z+
- 216:	7f 01       	movw	r14, r30
- 218:	a3 df       	rcall	.-186    	; 0x160 <ReadWrite_Spi>
+ 20a:	f7 01       	movw	r30, r14
+ 20c:	81 91       	ld	r24, Z+
+ 20e:	7f 01       	movw	r14, r30
+ 210:	a3 df       	rcall	.-186    	; 0x158 <ReadWrite_Spi>
 {                                                           
 	UINT8 byte_ctr;                              
                                                             
 	DOWNBIT(SPIPORT,CSN);//CSN = 0;                   // Set CSN low, init SPI tranaction
 	op_status = ReadWrite_Spi(reg);    // Select register to write to and read status UINT8
 	for(byte_ctr=0; byte_ctr<length; byte_ctr++) // then write all UINT8 in buffer(*pBuf) 
- 21a:	8e 2d       	mov	r24, r14
- 21c:	81 1b       	sub	r24, r17
- 21e:	80 17       	cp	r24, r16
- 220:	c0 f3       	brcs	.-16     	; 0x212 <SPI_Write_Buf+0x2a>
+ 212:	8e 2d       	mov	r24, r14
+ 214:	81 1b       	sub	r24, r17
+ 216:	80 17       	cp	r24, r16
+ 218:	c0 f3       	brcs	.-16     	; 0x20a <SPI_Write_Buf+0x2a>
 		ReadWrite_Spi(*pBuf++);                                    
 	UPBIT(SPIPORT,CSN);//CSN = 1;                 // Set CSN high again      
- 222:	c2 9a       	sbi	0x18, 2	; 24
+ 21a:	c2 9a       	sbi	0x18, 2	; 24
 
 }
- 224:	0f 90       	pop	r0
- 226:	cf 91       	pop	r28
- 228:	df 91       	pop	r29
- 22a:	1f 91       	pop	r17
- 22c:	0f 91       	pop	r16
- 22e:	ff 90       	pop	r15
- 230:	ef 90       	pop	r14
- 232:	08 95       	ret
+ 21c:	0f 90       	pop	r0
+ 21e:	cf 91       	pop	r28
+ 220:	df 91       	pop	r29
+ 222:	1f 91       	pop	r17
+ 224:	0f 91       	pop	r16
+ 226:	ff 90       	pop	r15
+ 228:	ef 90       	pop	r14
+ 22a:	08 95       	ret
 
-00000234 <SwitchToRxMode>:
+0000022c <SwitchToRxMode>:
 /**************************************************/
 void SwitchToRxMode()
 {
 	UINT8 value;
 
 	SPI_Write_Reg(FLUSH_RX,0);//flush Rx
- 234:	82 ee       	ldi	r24, 0xE2	; 226
- 236:	60 e0       	ldi	r22, 0x00	; 0
- 238:	98 df       	rcall	.-208    	; 0x16a <SPI_Write_Reg>
+ 22c:	82 ee       	ldi	r24, 0xE2	; 226
+ 22e:	60 e0       	ldi	r22, 0x00	; 0
+ 230:	98 df       	rcall	.-208    	; 0x162 <SPI_Write_Reg>
 
 	value=SPI_Read_Reg(STATUS);	// read register STATUS's value
- 23a:	87 e0       	ldi	r24, 0x07	; 7
- 23c:	a8 df       	rcall	.-176    	; 0x18e <SPI_Read_Reg>
- 23e:	68 2f       	mov	r22, r24
+ 232:	87 e0       	ldi	r24, 0x07	; 7
+ 234:	a8 df       	rcall	.-176    	; 0x186 <SPI_Read_Reg>
+ 236:	68 2f       	mov	r22, r24
 	SPI_Write_Reg(WRITE_REG|STATUS,value);// clear RX_DR or TX_DS or MAX_RT interrupt flag
- 240:	87 e2       	ldi	r24, 0x27	; 39
- 242:	93 df       	rcall	.-218    	; 0x16a <SPI_Write_Reg>
+ 238:	87 e2       	ldi	r24, 0x27	; 39
+ 23a:	93 df       	rcall	.-218    	; 0x162 <SPI_Write_Reg>
 
 	DOWNBIT(SPIPORT,CE);//CE=0;
- 244:	c1 98       	cbi	0x18, 1	; 24
+ 23c:	c1 98       	cbi	0x18, 1	; 24
 
 	value=SPI_Read_Reg(CONFIG);	// read register CONFIG's value
- 246:	80 e0       	ldi	r24, 0x00	; 0
- 248:	a2 df       	rcall	.-188    	; 0x18e <SPI_Read_Reg>
+ 23e:	80 e0       	ldi	r24, 0x00	; 0
+ 240:	a2 df       	rcall	.-188    	; 0x186 <SPI_Read_Reg>
 	
 //PRX
 	value=value|0x01;//set bit 1
- 24a:	68 2f       	mov	r22, r24
- 24c:	61 60       	ori	r22, 0x01	; 1
+ 242:	68 2f       	mov	r22, r24
+ 244:	61 60       	ori	r22, 0x01	; 1
   	SPI_Write_Reg(WRITE_REG | CONFIG, value); // Set PWR_UP bit, enable CRC(2 length) & Prim:RX. RX_DR enabled..
- 24e:	80 e2       	ldi	r24, 0x20	; 32
- 250:	8c df       	rcall	.-232    	; 0x16a <SPI_Write_Reg>
+ 246:	80 e2       	ldi	r24, 0x20	; 32
+ 248:	8c df       	rcall	.-232    	; 0x162 <SPI_Write_Reg>
 	UPBIT(SPIPORT,CE);//CE=1;
- 252:	c1 9a       	sbi	0x18, 1	; 24
+ 24a:	c1 9a       	sbi	0x18, 1	; 24
 }
- 254:	08 95       	ret
+ 24c:	08 95       	ret
 
-00000256 <SwitchToTxMode>:
+0000024e <SwitchToTxMode>:
 	switch to Tx mode
 /**************************************************/
 void SwitchToTxMode()
 {
 	UINT8 value;
 	SPI_Write_Reg(FLUSH_TX,0);//flush Tx
- 256:	81 ee       	ldi	r24, 0xE1	; 225
- 258:	60 e0       	ldi	r22, 0x00	; 0
- 25a:	87 df       	rcall	.-242    	; 0x16a <SPI_Write_Reg>
+ 24e:	81 ee       	ldi	r24, 0xE1	; 225
+ 250:	60 e0       	ldi	r22, 0x00	; 0
+ 252:	87 df       	rcall	.-242    	; 0x162 <SPI_Write_Reg>
 
 	DOWNBIT(SPIPORT,CE);//CE=0;
- 25c:	c1 98       	cbi	0x18, 1	; 24
+ 254:	c1 98       	cbi	0x18, 1	; 24
 	value=SPI_Read_Reg(CONFIG);	// read register CONFIG's value
- 25e:	80 e0       	ldi	r24, 0x00	; 0
- 260:	96 df       	rcall	.-212    	; 0x18e <SPI_Read_Reg>
+ 256:	80 e0       	ldi	r24, 0x00	; 0
+ 258:	96 df       	rcall	.-212    	; 0x186 <SPI_Read_Reg>
 //PTX
 	value=value&0xfe;//set bit 0
- 262:	68 2f       	mov	r22, r24
- 264:	6e 7f       	andi	r22, 0xFE	; 254
+ 25a:	68 2f       	mov	r22, r24
+ 25c:	6e 7f       	andi	r22, 0xFE	; 254
   	SPI_Write_Reg(WRITE_REG | CONFIG, value); // Set PWR_UP bit, enable CRC(2 length) & Prim:RX. RX_DR enabled.
- 266:	80 e2       	ldi	r24, 0x20	; 32
- 268:	80 df       	rcall	.-256    	; 0x16a <SPI_Write_Reg>
+ 25e:	80 e2       	ldi	r24, 0x20	; 32
+ 260:	80 df       	rcall	.-256    	; 0x162 <SPI_Write_Reg>
 	
 	UPBIT(SPIPORT,CE);//CE=1;
- 26a:	c1 9a       	sbi	0x18, 1	; 24
+ 262:	c1 9a       	sbi	0x18, 1	; 24
 }
- 26c:	08 95       	ret
+ 264:	08 95       	ret
 
-0000026e <SwitchCFG>:
+00000266 <SwitchCFG>:
 	          0:register bank0
 Return:
      None
 /**************************************************/
 void SwitchCFG(char _cfg)//1:Bank1 0:Bank0
 {
- 26e:	1f 93       	push	r17
- 270:	18 2f       	mov	r17, r24
+ 266:	1f 93       	push	r17
+ 268:	18 2f       	mov	r17, r24
 	UINT8 Tmp;
 
 	Tmp=SPI_Read_Reg(7);
- 272:	87 e0       	ldi	r24, 0x07	; 7
- 274:	8c df       	rcall	.-232    	; 0x18e <SPI_Read_Reg>
+ 26a:	87 e0       	ldi	r24, 0x07	; 7
+ 26c:	8c df       	rcall	.-232    	; 0x186 <SPI_Read_Reg>
 	Tmp=Tmp&0x80;
 
 	if( ( (Tmp)&&(_cfg==0) )
- 276:	87 ff       	sbrs	r24, 7
- 278:	03 c0       	rjmp	.+6      	; 0x280 <SwitchCFG+0x12>
- 27a:	11 23       	and	r17, r17
- 27c:	19 f0       	breq	.+6      	; 0x284 <SwitchCFG+0x16>
- 27e:	05 c0       	rjmp	.+10     	; 0x28a <SwitchCFG+0x1c>
+ 26e:	87 ff       	sbrs	r24, 7
+ 270:	03 c0       	rjmp	.+6      	; 0x278 <SwitchCFG+0x12>
+ 272:	11 23       	and	r17, r17
+ 274:	19 f0       	breq	.+6      	; 0x27c <SwitchCFG+0x16>
+ 276:	05 c0       	rjmp	.+10     	; 0x282 <SwitchCFG+0x1c>
 	||( ((Tmp)==0)&&(_cfg) ) )
- 280:	11 23       	and	r17, r17
- 282:	19 f0       	breq	.+6      	; 0x28a <SwitchCFG+0x1c>
+ 278:	11 23       	and	r17, r17
+ 27a:	19 f0       	breq	.+6      	; 0x282 <SwitchCFG+0x1c>
 	{
 		SPI_Write_Reg(ACTIVATE_CMD,0x53);
- 284:	80 e5       	ldi	r24, 0x50	; 80
- 286:	63 e5       	ldi	r22, 0x53	; 83
- 288:	70 df       	rcall	.-288    	; 0x16a <SPI_Write_Reg>
+ 27c:	80 e5       	ldi	r24, 0x50	; 80
+ 27e:	63 e5       	ldi	r22, 0x53	; 83
+ 280:	70 df       	rcall	.-288    	; 0x162 <SPI_Write_Reg>
 	}
 }
- 28a:	1f 91       	pop	r17
- 28c:	08 95       	ret
+ 282:	1f 91       	pop	r17
+ 284:	08 95       	ret
 
-0000028e <SetChannelNum>:
+00000286 <SetChannelNum>:
 Description:
 	set channel number
 
 /**************************************************/
 void SetChannelNum(UINT8 ch)
 {
- 28e:	68 2f       	mov	r22, r24
+ 286:	68 2f       	mov	r22, r24
 	SPI_Write_Reg((UINT8)(WRITE_REG|5),(UINT8)(ch));
- 290:	85 e2       	ldi	r24, 0x25	; 37
- 292:	6b df       	rcall	.-298    	; 0x16a <SPI_Write_Reg>
+ 288:	85 e2       	ldi	r24, 0x25	; 37
+ 28a:	6b df       	rcall	.-298    	; 0x162 <SPI_Write_Reg>
 }
- 294:	08 95       	ret
+ 28c:	08 95       	ret
 
-00000296 <RFM73_Initialize>:
+0000028e <RFM73_Initialize>:
 
 Description:                                                
 	register initialization
 /**************************************************/   
 void RFM73_Initialize()
 {
- 296:	cf 92       	push	r12
- 298:	df 92       	push	r13
- 29a:	ef 92       	push	r14
- 29c:	ff 92       	push	r15
- 29e:	0f 93       	push	r16
- 2a0:	1f 93       	push	r17
- 2a2:	df 93       	push	r29
- 2a4:	cf 93       	push	r28
- 2a6:	cd b7       	in	r28, 0x3d	; 61
- 2a8:	de b7       	in	r29, 0x3e	; 62
- 2aa:	2d 97       	sbiw	r28, 0x0d	; 13
- 2ac:	0f b6       	in	r0, 0x3f	; 63
- 2ae:	f8 94       	cli
- 2b0:	de bf       	out	0x3e, r29	; 62
- 2b2:	0f be       	out	0x3f, r0	; 63
- 2b4:	cd bf       	out	0x3d, r28	; 61
- 2b6:	8f e4       	ldi	r24, 0x4F	; 79
- 2b8:	93 ec       	ldi	r25, 0xC3	; 195
- 2ba:	01 97       	sbiw	r24, 0x01	; 1
- 2bc:	f1 f7       	brne	.-4      	; 0x2ba <RFM73_Initialize+0x24>
- 2be:	00 c0       	rjmp	.+0      	; 0x2c0 <RFM73_Initialize+0x2a>
- 2c0:	00 00       	nop
+ 28e:	cf 92       	push	r12
+ 290:	df 92       	push	r13
+ 292:	ef 92       	push	r14
+ 294:	ff 92       	push	r15
+ 296:	0f 93       	push	r16
+ 298:	1f 93       	push	r17
+ 29a:	df 93       	push	r29
+ 29c:	cf 93       	push	r28
+ 29e:	cd b7       	in	r28, 0x3d	; 61
+ 2a0:	de b7       	in	r29, 0x3e	; 62
+ 2a2:	2d 97       	sbiw	r28, 0x0d	; 13
+ 2a4:	0f b6       	in	r0, 0x3f	; 63
+ 2a6:	f8 94       	cli
+ 2a8:	de bf       	out	0x3e, r29	; 62
+ 2aa:	0f be       	out	0x3f, r0	; 63
+ 2ac:	cd bf       	out	0x3d, r28	; 61
+ 2ae:	8f e4       	ldi	r24, 0x4F	; 79
+ 2b0:	93 ec       	ldi	r25, 0xC3	; 195
+ 2b2:	01 97       	sbiw	r24, 0x01	; 1
+ 2b4:	f1 f7       	brne	.-4      	; 0x2b2 <RFM73_Initialize+0x24>
+ 2b6:	00 c0       	rjmp	.+0      	; 0x2b8 <RFM73_Initialize+0x2a>
+ 2b8:	00 00       	nop
  	UINT8 WriteArr[12];
 
 	//DelayMs(100);//delay more than 50ms.
 	_delay_ms(200);
 	
 	SwitchCFG(0);
- 2c2:	80 e0       	ldi	r24, 0x00	; 0
- 2c4:	d4 df       	rcall	.-88     	; 0x26e <SwitchCFG>
- 2c6:	0c ea       	ldi	r16, 0xAC	; 172
- 2c8:	10 e0       	ldi	r17, 0x00	; 0
+ 2ba:	80 e0       	ldi	r24, 0x00	; 0
+ 2bc:	d4 df       	rcall	.-88     	; 0x266 <SwitchCFG>
+ 2be:	0c ea       	ldi	r16, 0xAC	; 172
+ 2c0:	10 e0       	ldi	r17, 0x00	; 0
 
 	for(i=0;i<20;i++)
 	{
 		SPI_Write_Reg((WRITE_REG|Bank0_Reg[i][0]),Bank0_Reg[i][1]);
- 2ca:	f8 01       	movw	r30, r16
- 2cc:	80 81       	ld	r24, Z
- 2ce:	80 62       	ori	r24, 0x20	; 32
- 2d0:	61 81       	ldd	r22, Z+1	; 0x01
- 2d2:	4b df       	rcall	.-362    	; 0x16a <SPI_Write_Reg>
- 2d4:	0e 5f       	subi	r16, 0xFE	; 254
- 2d6:	1f 4f       	sbci	r17, 0xFF	; 255
+ 2c2:	f8 01       	movw	r30, r16
+ 2c4:	80 81       	ld	r24, Z
+ 2c6:	80 62       	ori	r24, 0x20	; 32
+ 2c8:	61 81       	ldd	r22, Z+1	; 0x01
+ 2ca:	4b df       	rcall	.-362    	; 0x162 <SPI_Write_Reg>
+ 2cc:	0e 5f       	subi	r16, 0xFE	; 254
+ 2ce:	1f 4f       	sbci	r17, 0xFF	; 255
 	//DelayMs(100);//delay more than 50ms.
 	_delay_ms(200);
 	
 	SwitchCFG(0);
 
 	for(i=0;i<20;i++)
- 2d8:	f0 e0       	ldi	r31, 0x00	; 0
- 2da:	04 3d       	cpi	r16, 0xD4	; 212
- 2dc:	1f 07       	cpc	r17, r31
- 2de:	a9 f7       	brne	.-22     	; 0x2ca <RFM73_Initialize+0x34>
+ 2d0:	f0 e0       	ldi	r31, 0x00	; 0
+ 2d2:	04 3d       	cpi	r16, 0xD4	; 212
+ 2d4:	1f 07       	cpc	r17, r31
+ 2d6:	a9 f7       	brne	.-22     	; 0x2c2 <RFM73_Initialize+0x34>
 	SPI_Write_Buf((WRITE_REG|16),RX0_Address,5);*/
 
 //reg 10 - Rx0 addr
 	for(j=0;j<5;j++)
 	{
 		WriteArr[j]=RX0_Address[j];
- 2e0:	34 e3       	ldi	r19, 0x34	; 52
- 2e2:	c3 2e       	mov	r12, r19
- 2e4:	c9 82       	std	Y+1, r12	; 0x01
- 2e6:	23 e4       	ldi	r18, 0x43	; 67
- 2e8:	d2 2e       	mov	r13, r18
- 2ea:	da 82       	std	Y+2, r13	; 0x02
- 2ec:	90 e1       	ldi	r25, 0x10	; 16
- 2ee:	e9 2e       	mov	r14, r25
- 2f0:	eb 82       	std	Y+3, r14	; 0x03
- 2f2:	ec 82       	std	Y+4, r14	; 0x04
- 2f4:	ff 24       	eor	r15, r15
- 2f6:	f3 94       	inc	r15
- 2f8:	fd 82       	std	Y+5, r15	; 0x05
+ 2d8:	34 e3       	ldi	r19, 0x34	; 52
+ 2da:	c3 2e       	mov	r12, r19
+ 2dc:	c9 82       	std	Y+1, r12	; 0x01
+ 2de:	23 e4       	ldi	r18, 0x43	; 67
+ 2e0:	d2 2e       	mov	r13, r18
+ 2e2:	da 82       	std	Y+2, r13	; 0x02
+ 2e4:	90 e1       	ldi	r25, 0x10	; 16
+ 2e6:	e9 2e       	mov	r14, r25
+ 2e8:	eb 82       	std	Y+3, r14	; 0x03
+ 2ea:	ec 82       	std	Y+4, r14	; 0x04
+ 2ec:	ff 24       	eor	r15, r15
+ 2ee:	f3 94       	inc	r15
+ 2f0:	fd 82       	std	Y+5, r15	; 0x05
 	}
 	SPI_Write_Buf((WRITE_REG|10),&(WriteArr[0]),5);
- 2fa:	8a e2       	ldi	r24, 0x2A	; 42
- 2fc:	8e 01       	movw	r16, r28
- 2fe:	0f 5f       	subi	r16, 0xFF	; 255
- 300:	1f 4f       	sbci	r17, 0xFF	; 255
- 302:	b8 01       	movw	r22, r16
- 304:	45 e0       	ldi	r20, 0x05	; 5
- 306:	70 df       	rcall	.-288    	; 0x1e8 <SPI_Write_Buf>
+ 2f2:	8a e2       	ldi	r24, 0x2A	; 42
+ 2f4:	8e 01       	movw	r16, r28
+ 2f6:	0f 5f       	subi	r16, 0xFF	; 255
+ 2f8:	1f 4f       	sbci	r17, 0xFF	; 255
+ 2fa:	b8 01       	movw	r22, r16
+ 2fc:	45 e0       	ldi	r20, 0x05	; 5
+ 2fe:	70 df       	rcall	.-288    	; 0x1e0 <SPI_Write_Buf>
 	
 //REG 11 - Rx1 addr
 	for(j=0;j<5;j++)
 	{
 		WriteArr[j]=RX1_Address[j];
- 308:	89 e3       	ldi	r24, 0x39	; 57
- 30a:	89 83       	std	Y+1, r24	; 0x01
- 30c:	88 e3       	ldi	r24, 0x38	; 56
- 30e:	8a 83       	std	Y+2, r24	; 0x02
- 310:	87 e3       	ldi	r24, 0x37	; 55
- 312:	8b 83       	std	Y+3, r24	; 0x03
- 314:	86 e3       	ldi	r24, 0x36	; 54
- 316:	8c 83       	std	Y+4, r24	; 0x04
- 318:	82 ec       	ldi	r24, 0xC2	; 194
- 31a:	8d 83       	std	Y+5, r24	; 0x05
+ 300:	89 e3       	ldi	r24, 0x39	; 57
+ 302:	89 83       	std	Y+1, r24	; 0x01
+ 304:	88 e3       	ldi	r24, 0x38	; 56
+ 306:	8a 83       	std	Y+2, r24	; 0x02
+ 308:	87 e3       	ldi	r24, 0x37	; 55
+ 30a:	8b 83       	std	Y+3, r24	; 0x03
+ 30c:	86 e3       	ldi	r24, 0x36	; 54
+ 30e:	8c 83       	std	Y+4, r24	; 0x04
+ 310:	82 ec       	ldi	r24, 0xC2	; 194
+ 312:	8d 83       	std	Y+5, r24	; 0x05
 	}
 	SPI_Write_Buf((WRITE_REG|11),&(WriteArr[0]),5);
- 31c:	8b e2       	ldi	r24, 0x2B	; 43
- 31e:	b8 01       	movw	r22, r16
- 320:	45 e0       	ldi	r20, 0x05	; 5
- 322:	62 df       	rcall	.-316    	; 0x1e8 <SPI_Write_Buf>
+ 314:	8b e2       	ldi	r24, 0x2B	; 43
+ 316:	b8 01       	movw	r22, r16
+ 318:	45 e0       	ldi	r20, 0x05	; 5
+ 31a:	62 df       	rcall	.-316    	; 0x1e0 <SPI_Write_Buf>
 //REG 16 - TX addr
 	for(j=0;j<5;j++)
 	{
 		WriteArr[j]=RX0_Address[j];
- 324:	c9 82       	std	Y+1, r12	; 0x01
- 326:	da 82       	std	Y+2, r13	; 0x02
- 328:	eb 82       	std	Y+3, r14	; 0x03
- 32a:	ec 82       	std	Y+4, r14	; 0x04
- 32c:	fd 82       	std	Y+5, r15	; 0x05
+ 31c:	c9 82       	std	Y+1, r12	; 0x01
+ 31e:	da 82       	std	Y+2, r13	; 0x02
+ 320:	eb 82       	std	Y+3, r14	; 0x03
+ 322:	ec 82       	std	Y+4, r14	; 0x04
+ 324:	fd 82       	std	Y+5, r15	; 0x05
 	}
 	SPI_Write_Buf((WRITE_REG|16),&(WriteArr[0]),5);
- 32e:	80 e3       	ldi	r24, 0x30	; 48
- 330:	b8 01       	movw	r22, r16
- 332:	45 e0       	ldi	r20, 0x05	; 5
- 334:	59 df       	rcall	.-334    	; 0x1e8 <SPI_Write_Buf>
+ 326:	80 e3       	ldi	r24, 0x30	; 48
+ 328:	b8 01       	movw	r22, r16
+ 32a:	45 e0       	ldi	r20, 0x05	; 5
+ 32c:	59 df       	rcall	.-334    	; 0x1e0 <SPI_Write_Buf>
 	
 //	printf("\nEnd Load Reg");
 
 	i=SPI_Read_Reg(29);//read Feature Register ???????§??¶??¬?¤¶?»??? Payload With ACK?¬???????????¬·??? ACTIVATE????????????0x73),?»??????¶??¬?¤¶?»??? Payload With ACK (REG28,REG29).
- 336:	8d e1       	ldi	r24, 0x1D	; 29
- 338:	2a df       	rcall	.-428    	; 0x18e <SPI_Read_Reg>
+ 32e:	8d e1       	ldi	r24, 0x1D	; 29
+ 330:	2a df       	rcall	.-428    	; 0x186 <SPI_Read_Reg>
 	if(i==0) // i!=0 showed that chip has been actived.so do not active again.
- 33a:	88 23       	and	r24, r24
- 33c:	19 f4       	brne	.+6      	; 0x344 <RFM73_Initialize+0xae>
+ 332:	88 23       	and	r24, r24
+ 334:	19 f4       	brne	.+6      	; 0x33c <RFM73_Initialize+0xae>
 		SPI_Write_Reg(ACTIVATE_CMD,0x73);// Active
- 33e:	80 e5       	ldi	r24, 0x50	; 80
- 340:	63 e7       	ldi	r22, 0x73	; 115
- 342:	13 df       	rcall	.-474    	; 0x16a <SPI_Write_Reg>
+ 336:	80 e5       	ldi	r24, 0x50	; 80
+ 338:	63 e7       	ldi	r22, 0x73	; 115
+ 33a:	13 df       	rcall	.-474    	; 0x162 <SPI_Write_Reg>
 	for(i=22;i>=21;i--)
 	{
 		SPI_Write_Reg((WRITE_REG|Bank0_Reg[i][0]),Bank0_Reg[i][1]);
- 344:	8d e3       	ldi	r24, 0x3D	; 61
- 346:	67 e0       	ldi	r22, 0x07	; 7
- 348:	10 df       	rcall	.-480    	; 0x16a <SPI_Write_Reg>
- 34a:	8c e3       	ldi	r24, 0x3C	; 60
- 34c:	6f e3       	ldi	r22, 0x3F	; 63
- 34e:	0d df       	rcall	.-486    	; 0x16a <SPI_Write_Reg>
+ 33c:	8d e3       	ldi	r24, 0x3D	; 61
+ 33e:	67 e0       	ldi	r22, 0x07	; 7
+ 340:	10 df       	rcall	.-480    	; 0x162 <SPI_Write_Reg>
+ 342:	8c e3       	ldi	r24, 0x3C	; 60
+ 344:	6f e3       	ldi	r22, 0x3F	; 63
+ 346:	0d df       	rcall	.-486    	; 0x162 <SPI_Write_Reg>
 		//SPI_Write_Reg_Bank0(Bank0_Reg[i][0],Bank0_Reg[i][1]);
 	}
 	
 //********************Write Bank1 register******************
 	SwitchCFG(1);
- 350:	81 e0       	ldi	r24, 0x01	; 1
- 352:	8d df       	rcall	.-230    	; 0x26e <SwitchCFG>
- 354:	09 e6       	ldi	r16, 0x69	; 105
- 356:	10 e0       	ldi	r17, 0x00	; 0
+ 348:	81 e0       	ldi	r24, 0x01	; 1
+ 34a:	8d df       	rcall	.-230    	; 0x266 <SwitchCFG>
+ 34c:	09 e6       	ldi	r16, 0x69	; 105
+ 34e:	10 e0       	ldi	r17, 0x00	; 0
 	
 	for(i=0;i<=8;i++)//reverse
- 358:	90 e0       	ldi	r25, 0x00	; 0
+ 350:	90 e0       	ldi	r25, 0x00	; 0
 	{
 		for(j=0;j<4;j++)
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(j) ) )&0xff;
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
- 35a:	7e 01       	movw	r14, r28
- 35c:	08 94       	sec
- 35e:	e1 1c       	adc	r14, r1
- 360:	f1 1c       	adc	r15, r1
+ 352:	7e 01       	movw	r14, r28
+ 354:	08 94       	sec
+ 356:	e1 1c       	adc	r14, r1
+ 358:	f1 1c       	adc	r15, r1
 	SwitchCFG(1);
 	
 	for(i=0;i<=8;i++)//reverse
 	{
 		for(j=0;j<4;j++)
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(j) ) )&0xff;
- 362:	f8 01       	movw	r30, r16
- 364:	21 91       	ld	r18, Z+
- 366:	31 91       	ld	r19, Z+
- 368:	41 91       	ld	r20, Z+
- 36a:	51 91       	ld	r21, Z+
- 36c:	8f 01       	movw	r16, r30
- 36e:	29 83       	std	Y+1, r18	; 0x01
- 370:	3a 83       	std	Y+2, r19	; 0x02
- 372:	4b 83       	std	Y+3, r20	; 0x03
- 374:	5c 83       	std	Y+4, r21	; 0x04
+ 35a:	f8 01       	movw	r30, r16
+ 35c:	21 91       	ld	r18, Z+
+ 35e:	31 91       	ld	r19, Z+
+ 360:	41 91       	ld	r20, Z+
+ 362:	51 91       	ld	r21, Z+
+ 364:	8f 01       	movw	r16, r30
+ 366:	29 83       	std	Y+1, r18	; 0x01
+ 368:	3a 83       	std	Y+2, r19	; 0x02
+ 36a:	4b 83       	std	Y+3, r20	; 0x03
+ 36c:	5c 83       	std	Y+4, r21	; 0x04
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
- 376:	89 2f       	mov	r24, r25
- 378:	80 62       	ori	r24, 0x20	; 32
- 37a:	b7 01       	movw	r22, r14
- 37c:	44 e0       	ldi	r20, 0x04	; 4
- 37e:	9d 87       	std	Y+13, r25	; 0x0d
- 380:	33 df       	rcall	.-410    	; 0x1e8 <SPI_Write_Buf>
+ 36e:	89 2f       	mov	r24, r25
+ 370:	80 62       	ori	r24, 0x20	; 32
+ 372:	b7 01       	movw	r22, r14
+ 374:	44 e0       	ldi	r20, 0x04	; 4
+ 376:	9d 87       	std	Y+13, r25	; 0x0d
+ 378:	33 df       	rcall	.-410    	; 0x1e0 <SPI_Write_Buf>
 	}
 	
 //********************Write Bank1 register******************
 	SwitchCFG(1);
 	
 	for(i=0;i<=8;i++)//reverse
- 382:	9d 85       	ldd	r25, Y+13	; 0x0d
- 384:	9f 5f       	subi	r25, 0xFF	; 255
- 386:	99 30       	cpi	r25, 0x09	; 9
- 388:	61 f7       	brne	.-40     	; 0x362 <RFM73_Initialize+0xcc>
- 38a:	8d e8       	ldi	r24, 0x8D	; 141
- 38c:	e8 2e       	mov	r14, r24
- 38e:	80 e0       	ldi	r24, 0x00	; 0
- 390:	f8 2e       	mov	r15, r24
+ 37a:	9d 85       	ldd	r25, Y+13	; 0x0d
+ 37c:	9f 5f       	subi	r25, 0xFF	; 255
+ 37e:	99 30       	cpi	r25, 0x09	; 9
+ 380:	61 f7       	brne	.-40     	; 0x35a <RFM73_Initialize+0xcc>
+ 382:	8d e8       	ldi	r24, 0x8D	; 141
+ 384:	e8 2e       	mov	r14, r24
+ 386:	80 e0       	ldi	r24, 0x00	; 0
+ 388:	f8 2e       	mov	r15, r24
 	for(i=9;i<=13;i++)
 	{
 		for(j=0;j<4;j++)
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(3-j) ) )&0xff;
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
- 392:	8e 01       	movw	r16, r28
- 394:	0f 5f       	subi	r16, 0xFF	; 255
- 396:	1f 4f       	sbci	r17, 0xFF	; 255
+ 38a:	8e 01       	movw	r16, r28
+ 38c:	0f 5f       	subi	r16, 0xFF	; 255
+ 38e:	1f 4f       	sbci	r17, 0xFF	; 255
 	}
 
 	for(i=9;i<=13;i++)
 	{
 		for(j=0;j<4;j++)
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(3-j) ) )&0xff;
- 398:	f7 01       	movw	r30, r14
- 39a:	21 91       	ld	r18, Z+
- 39c:	31 91       	ld	r19, Z+
- 39e:	41 91       	ld	r20, Z+
- 3a0:	51 91       	ld	r21, Z+
- 3a2:	7f 01       	movw	r14, r30
- 3a4:	59 83       	std	Y+1, r21	; 0x01
- 3a6:	4a 83       	std	Y+2, r20	; 0x02
- 3a8:	3b 83       	std	Y+3, r19	; 0x03
- 3aa:	2c 83       	std	Y+4, r18	; 0x04
+ 390:	f7 01       	movw	r30, r14
+ 392:	21 91       	ld	r18, Z+
+ 394:	31 91       	ld	r19, Z+
+ 396:	41 91       	ld	r20, Z+
+ 398:	51 91       	ld	r21, Z+
+ 39a:	7f 01       	movw	r14, r30
+ 39c:	59 83       	std	Y+1, r21	; 0x01
+ 39e:	4a 83       	std	Y+2, r20	; 0x02
+ 3a0:	3b 83       	std	Y+3, r19	; 0x03
+ 3a2:	2c 83       	std	Y+4, r18	; 0x04
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
- 3ac:	89 2f       	mov	r24, r25
- 3ae:	80 62       	ori	r24, 0x20	; 32
- 3b0:	b8 01       	movw	r22, r16
- 3b2:	44 e0       	ldi	r20, 0x04	; 4
- 3b4:	9d 87       	std	Y+13, r25	; 0x0d
- 3b6:	18 df       	rcall	.-464    	; 0x1e8 <SPI_Write_Buf>
+ 3a4:	89 2f       	mov	r24, r25
+ 3a6:	80 62       	ori	r24, 0x20	; 32
+ 3a8:	b8 01       	movw	r22, r16
+ 3aa:	44 e0       	ldi	r20, 0x04	; 4
+ 3ac:	9d 87       	std	Y+13, r25	; 0x0d
+ 3ae:	18 df       	rcall	.-464    	; 0x1e0 <SPI_Write_Buf>
 			WriteArr[j]=(Bank1_Reg0_13[i]>>(8*(j) ) )&0xff;
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
 	}
 
 	for(i=9;i<=13;i++)
- 3b8:	9d 85       	ldd	r25, Y+13	; 0x0d
- 3ba:	9f 5f       	subi	r25, 0xFF	; 255
- 3bc:	9e 30       	cpi	r25, 0x0E	; 14
- 3be:	61 f7       	brne	.-40     	; 0x398 <RFM73_Initialize+0x102>
- 3c0:	e1 ea       	ldi	r30, 0xA1	; 161
- 3c2:	f0 e0       	ldi	r31, 0x00	; 0
- 3c4:	d8 01       	movw	r26, r16
+ 3b0:	9d 85       	ldd	r25, Y+13	; 0x0d
+ 3b2:	9f 5f       	subi	r25, 0xFF	; 255
+ 3b4:	9e 30       	cpi	r25, 0x0E	; 14
+ 3b6:	61 f7       	brne	.-40     	; 0x390 <RFM73_Initialize+0x102>
+ 3b8:	e1 ea       	ldi	r30, 0xA1	; 161
+ 3ba:	f0 e0       	ldi	r31, 0x00	; 0
+ 3bc:	d8 01       	movw	r26, r16
 	}
 
 	//SPI_Write_Buf((WRITE_REG|14),&(Bank1_Reg14[0]),11);
 	for(j=0;j<11;j++)
 	{
 		WriteArr[j]=Bank1_Reg14[j];
- 3c6:	81 91       	ld	r24, Z+
- 3c8:	8d 93       	st	X+, r24
+ 3be:	81 91       	ld	r24, Z+
+ 3c0:	8d 93       	st	X+, r24
 
 		SPI_Write_Buf((WRITE_REG|i),&(WriteArr[0]),4);
 	}
 
 	//SPI_Write_Buf((WRITE_REG|14),&(Bank1_Reg14[0]),11);
 	for(j=0;j<11;j++)
- 3ca:	80 e0       	ldi	r24, 0x00	; 0
- 3cc:	ec 3a       	cpi	r30, 0xAC	; 172
- 3ce:	f8 07       	cpc	r31, r24
- 3d0:	d1 f7       	brne	.-12     	; 0x3c6 <RFM73_Initialize+0x130>
+ 3c2:	80 e0       	ldi	r24, 0x00	; 0
+ 3c4:	ec 3a       	cpi	r30, 0xAC	; 172
+ 3c6:	f8 07       	cpc	r31, r24
+ 3c8:	d1 f7       	brne	.-12     	; 0x3be <RFM73_Initialize+0x130>
 	{
 		WriteArr[j]=Bank1_Reg14[j];
 	}
 	SPI_Write_Buf((WRITE_REG|14),&(WriteArr[0]),11);
- 3d2:	8e e2       	ldi	r24, 0x2E	; 46
- 3d4:	8e 01       	movw	r16, r28
- 3d6:	0f 5f       	subi	r16, 0xFF	; 255
- 3d8:	1f 4f       	sbci	r17, 0xFF	; 255
- 3da:	b8 01       	movw	r22, r16
- 3dc:	4b e0       	ldi	r20, 0x0B	; 11
- 3de:	04 df       	rcall	.-504    	; 0x1e8 <SPI_Write_Buf>
+ 3ca:	8e e2       	ldi	r24, 0x2E	; 46
+ 3cc:	8e 01       	movw	r16, r28
+ 3ce:	0f 5f       	subi	r16, 0xFF	; 255
+ 3d0:	1f 4f       	sbci	r17, 0xFF	; 255
+ 3d2:	b8 01       	movw	r22, r16
+ 3d4:	4b e0       	ldi	r20, 0x0B	; 11
+ 3d6:	04 df       	rcall	.-504    	; 0x1e0 <SPI_Write_Buf>
 
 //toggle REG4<25,26>
 	for(j=0;j<4;j++)
 		//WriteArr[j]=(RegArrFSKAnalog[4]>>(8*(j) ) )&0xff;
 		WriteArr[j]=(Bank1_Reg0_13[4]>>(8*(j) ) )&0xff;
- 3e0:	86 e9       	ldi	r24, 0x96	; 150
- 3e2:	8a 83       	std	Y+2, r24	; 0x02
- 3e4:	82 e8       	ldi	r24, 0x82	; 130
- 3e6:	8b 83       	std	Y+3, r24	; 0x03
- 3e8:	8b e1       	ldi	r24, 0x1B	; 27
- 3ea:	8c 83       	std	Y+4, r24	; 0x04
+ 3d8:	86 e9       	ldi	r24, 0x96	; 150
+ 3da:	8a 83       	std	Y+2, r24	; 0x02
+ 3dc:	82 e8       	ldi	r24, 0x82	; 130
+ 3de:	8b 83       	std	Y+3, r24	; 0x03
+ 3e0:	8b e1       	ldi	r24, 0x1B	; 27
+ 3e2:	8c 83       	std	Y+4, r24	; 0x04
 
 	WriteArr[0]=WriteArr[0]|0x06;
- 3ec:	8f ed       	ldi	r24, 0xDF	; 223
- 3ee:	89 83       	std	Y+1, r24	; 0x01
+ 3e4:	8f ed       	ldi	r24, 0xDF	; 223
+ 3e6:	89 83       	std	Y+1, r24	; 0x01
 	SPI_Write_Buf((WRITE_REG|4),&(WriteArr[0]),4);
- 3f0:	84 e2       	ldi	r24, 0x24	; 36
- 3f2:	b8 01       	movw	r22, r16
- 3f4:	44 e0       	ldi	r20, 0x04	; 4
- 3f6:	f8 de       	rcall	.-528    	; 0x1e8 <SPI_Write_Buf>
+ 3e8:	84 e2       	ldi	r24, 0x24	; 36
+ 3ea:	b8 01       	movw	r22, r16
+ 3ec:	44 e0       	ldi	r20, 0x04	; 4
+ 3ee:	f8 de       	rcall	.-528    	; 0x1e0 <SPI_Write_Buf>
 
 	WriteArr[0]=WriteArr[0]&0xf9;
- 3f8:	89 81       	ldd	r24, Y+1	; 0x01
- 3fa:	89 7f       	andi	r24, 0xF9	; 249
- 3fc:	89 83       	std	Y+1, r24	; 0x01
+ 3f0:	89 81       	ldd	r24, Y+1	; 0x01
+ 3f2:	89 7f       	andi	r24, 0xF9	; 249
+ 3f4:	89 83       	std	Y+1, r24	; 0x01
 	SPI_Write_Buf((WRITE_REG|4),&(WriteArr[0]),4);
- 3fe:	84 e2       	ldi	r24, 0x24	; 36
- 400:	b8 01       	movw	r22, r16
- 402:	44 e0       	ldi	r20, 0x04	; 4
- 404:	f1 de       	rcall	.-542    	; 0x1e8 <SPI_Write_Buf>
- 406:	e3 ed       	ldi	r30, 0xD3	; 211
- 408:	f0 e3       	ldi	r31, 0x30	; 48
- 40a:	31 97       	sbiw	r30, 0x01	; 1
- 40c:	f1 f7       	brne	.-4      	; 0x40a <RFM73_Initialize+0x174>
- 40e:	00 c0       	rjmp	.+0      	; 0x410 <RFM73_Initialize+0x17a>
- 410:	00 00       	nop
+ 3f6:	84 e2       	ldi	r24, 0x24	; 36
+ 3f8:	b8 01       	movw	r22, r16
+ 3fa:	44 e0       	ldi	r20, 0x04	; 4
+ 3fc:	f1 de       	rcall	.-542    	; 0x1e0 <SPI_Write_Buf>
+ 3fe:	e3 ed       	ldi	r30, 0xD3	; 211
+ 400:	f0 e3       	ldi	r31, 0x30	; 48
+ 402:	31 97       	sbiw	r30, 0x01	; 1
+ 404:	f1 f7       	brne	.-4      	; 0x402 <RFM73_Initialize+0x174>
+ 406:	00 c0       	rjmp	.+0      	; 0x408 <RFM73_Initialize+0x17a>
+ 408:	00 00       	nop
 	
 	//DelayMs(10);
 	_delay_ms(50);
 	
 //********************switch back to Bank0 register access******************
 	SwitchCFG(0);
- 412:	80 e0       	ldi	r24, 0x00	; 0
- 414:	2c df       	rcall	.-424    	; 0x26e <SwitchCFG>
+ 40a:	80 e0       	ldi	r24, 0x00	; 0
+ 40c:	2c df       	rcall	.-424    	; 0x266 <SwitchCFG>
 	SwitchToRxMode();//switch to RX mode
- 416:	0e df       	rcall	.-484    	; 0x234 <SwitchToRxMode>
+ 40e:	0e df       	rcall	.-484    	; 0x22c <SwitchToRxMode>
 }
- 418:	2d 96       	adiw	r28, 0x0d	; 13
- 41a:	0f b6       	in	r0, 0x3f	; 63
- 41c:	f8 94       	cli
- 41e:	de bf       	out	0x3e, r29	; 62
- 420:	0f be       	out	0x3f, r0	; 63
- 422:	cd bf       	out	0x3d, r28	; 61
- 424:	cf 91       	pop	r28
- 426:	df 91       	pop	r29
- 428:	1f 91       	pop	r17
- 42a:	0f 91       	pop	r16
- 42c:	ff 90       	pop	r15
- 42e:	ef 90       	pop	r14
- 430:	df 90       	pop	r13
- 432:	cf 90       	pop	r12
- 434:	08 95       	ret
+ 410:	2d 96       	adiw	r28, 0x0d	; 13
+ 412:	0f b6       	in	r0, 0x3f	; 63
+ 414:	f8 94       	cli
+ 416:	de bf       	out	0x3e, r29	; 62
+ 418:	0f be       	out	0x3f, r0	; 63
+ 41a:	cd bf       	out	0x3d, r28	; 61
+ 41c:	cf 91       	pop	r28
+ 41e:	df 91       	pop	r29
+ 420:	1f 91       	pop	r17
+ 422:	0f 91       	pop	r16
+ 424:	ff 90       	pop	r15
+ 426:	ef 90       	pop	r14
+ 428:	df 90       	pop	r13
+ 42a:	cf 90       	pop	r12
+ 42c:	08 95       	ret
 
-00000436 <RFM73_SetPower>:
+0000042e <RFM73_SetPower>:
 
 //*****************************************************************************
 
 void RFM73_SetPower(char power)
 {
 	UINT8 power_mask = (((power << 1) & 0b00000110) | 0b11111001);	
- 436:	68 2f       	mov	r22, r24
- 438:	66 0f       	add	r22, r22
- 43a:	69 6f       	ori	r22, 0xF9	; 249
+ 42e:	68 2f       	mov	r22, r24
+ 430:	66 0f       	add	r22, r22
+ 432:	69 6f       	ori	r22, 0xF9	; 249
 
 	SPI_Write_Reg((WRITE_REG|Bank0_Reg[6][0]),( Bank0_Reg[6][1] & power_mask));
- 43c:	67 72       	andi	r22, 0x27	; 39
- 43e:	86 e2       	ldi	r24, 0x26	; 38
- 440:	94 de       	rcall	.-728    	; 0x16a <SPI_Write_Reg>
+ 434:	67 72       	andi	r22, 0x27	; 39
+ 436:	86 e2       	ldi	r24, 0x26	; 38
+ 438:	94 de       	rcall	.-728    	; 0x162 <SPI_Write_Reg>
 	SwitchToRxMode();
- 442:	f8 de       	rcall	.-528    	; 0x234 <SwitchToRxMode>
+ 43a:	f8 de       	rcall	.-528    	; 0x22c <SwitchToRxMode>
 
 }
- 444:	08 95       	ret
+ 43c:	08 95       	ret
 
-00000446 <Send_Packet>:
+0000043e <Send_Packet>:
 	len: packet length
 Return:
 	None
 **************************************************/
 char Send_Packet(UINT8 type,UINT8* pbuf,UINT8 len)
 {
- 446:	ef 92       	push	r14
- 448:	ff 92       	push	r15
- 44a:	1f 93       	push	r17
- 44c:	df 93       	push	r29
- 44e:	cf 93       	push	r28
- 450:	0f 92       	push	r0
- 452:	cd b7       	in	r28, 0x3d	; 61
- 454:	de b7       	in	r29, 0x3e	; 62
- 456:	18 2f       	mov	r17, r24
- 458:	7b 01       	movw	r14, r22
+ 43e:	ef 92       	push	r14
+ 440:	ff 92       	push	r15
+ 442:	1f 93       	push	r17
+ 444:	df 93       	push	r29
+ 446:	cf 93       	push	r28
+ 448:	0f 92       	push	r0
+ 44a:	cd b7       	in	r28, 0x3d	; 61
+ 44c:	de b7       	in	r29, 0x3e	; 62
+ 44e:	18 2f       	mov	r17, r24
+ 450:	7b 01       	movw	r14, r22
 	UINT8 fifo_sta;
 	
 	SwitchToTxMode();  //switch to tx mode
- 45a:	49 83       	std	Y+1, r20	; 0x01
- 45c:	fc de       	rcall	.-520    	; 0x256 <SwitchToTxMode>
+ 452:	49 83       	std	Y+1, r20	; 0x01
+ 454:	fc de       	rcall	.-520    	; 0x24e <SwitchToTxMode>
 
 	fifo_sta=SPI_Read_Reg(FIFO_STATUS);	// read register FIFO_STATUS's value
- 45e:	87 e1       	ldi	r24, 0x17	; 23
- 460:	96 de       	rcall	.-724    	; 0x18e <SPI_Read_Reg>
+ 456:	87 e1       	ldi	r24, 0x17	; 23
+ 458:	96 de       	rcall	.-724    	; 0x186 <SPI_Read_Reg>
 	if((fifo_sta&FIFO_STATUS_TX_FULL)==0)//if not full, send data (write buff)
- 462:	49 81       	ldd	r20, Y+1	; 0x01
- 464:	85 fd       	sbrc	r24, 5
- 466:	09 c0       	rjmp	.+18     	; 0x47a <__stack+0x1b>
+ 45a:	49 81       	ldd	r20, Y+1	; 0x01
+ 45c:	85 fd       	sbrc	r24, 5
+ 45e:	09 c0       	rjmp	.+18     	; 0x472 <__stack+0x13>
 	{ 
 	  	//RED_LED = 1;
 		
 		SPI_Write_Buf(type, pbuf, len); // Writes data to buffer
- 468:	81 2f       	mov	r24, r17
- 46a:	b7 01       	movw	r22, r14
- 46c:	bd de       	rcall	.-646    	; 0x1e8 <SPI_Write_Buf>
- 46e:	87 ea       	ldi	r24, 0xA7	; 167
- 470:	91 e6       	ldi	r25, 0x61	; 97
- 472:	01 97       	sbiw	r24, 0x01	; 1
- 474:	f1 f7       	brne	.-4      	; 0x472 <__stack+0x13>
- 476:	00 c0       	rjmp	.+0      	; 0x478 <__stack+0x19>
- 478:	00 00       	nop
+ 460:	81 2f       	mov	r24, r17
+ 462:	b7 01       	movw	r22, r14
+ 464:	bd de       	rcall	.-646    	; 0x1e0 <SPI_Write_Buf>
+ 466:	87 ea       	ldi	r24, 0xA7	; 167
+ 468:	91 e6       	ldi	r25, 0x61	; 97
+ 46a:	01 97       	sbiw	r24, 0x01	; 1
+ 46c:	f1 f7       	brne	.-4      	; 0x46a <__stack+0xb>
+ 46e:	00 c0       	rjmp	.+0      	; 0x470 <__stack+0x11>
+ 470:	00 00       	nop
 		//delay_50ms();
 		_delay_ms(100);
 	}	  
 	
 	return 0;	 	
 }
- 47a:	80 e0       	ldi	r24, 0x00	; 0
- 47c:	0f 90       	pop	r0
- 47e:	cf 91       	pop	r28
- 480:	df 91       	pop	r29
- 482:	1f 91       	pop	r17
- 484:	ff 90       	pop	r15
- 486:	ef 90       	pop	r14
- 488:	08 95       	ret
+ 472:	80 e0       	ldi	r24, 0x00	; 0
+ 474:	0f 90       	pop	r0
+ 476:	cf 91       	pop	r28
+ 478:	df 91       	pop	r29
+ 47a:	1f 91       	pop	r17
+ 47c:	ff 90       	pop	r15
+ 47e:	ef 90       	pop	r14
+ 480:	08 95       	ret
 
-0000048a <Receive_Packet>:
+00000482 <Receive_Packet>:
 	None
 Return:
 	None
 **************************************************/
 char Receive_Packet(char * buf, char buf_len)
 {
- 48a:	0f 93       	push	r16
- 48c:	1f 93       	push	r17
- 48e:	cf 93       	push	r28
- 490:	df 93       	push	r29
- 492:	ec 01       	movw	r28, r24
+ 482:	0f 93       	push	r16
+ 484:	1f 93       	push	r17
+ 486:	cf 93       	push	r28
+ 488:	df 93       	push	r29
+ 48a:	ec 01       	movw	r28, r24
 	UINT8 len,i,sta,fifo_sta,value,chksum,aa, res = 0;
 	UINT8 rx_buf[MAX_PACKET_LEN];
 
 	sta=SPI_Read_Reg(STATUS);	// read register STATUS's value
- 494:	87 e0       	ldi	r24, 0x07	; 7
- 496:	7b de       	rcall	.-778    	; 0x18e <SPI_Read_Reg>
- 498:	08 2f       	mov	r16, r24
+ 48c:	87 e0       	ldi	r24, 0x07	; 7
+ 48e:	7b de       	rcall	.-778    	; 0x186 <SPI_Read_Reg>
+ 490:	08 2f       	mov	r16, r24
 
 	if((STATUS_RX_DR&sta) == 0x40)				// if receive data ready (RX_DR) interrupt
- 49a:	86 ff       	sbrs	r24, 6
- 49c:	12 c0       	rjmp	.+36     	; 0x4c2 <Receive_Packet+0x38>
+ 492:	86 ff       	sbrs	r24, 6
+ 494:	12 c0       	rjmp	.+36     	; 0x4ba <Receive_Packet+0x38>
 	{
 		do
 		{
 			len=SPI_Read_Reg(R_RX_PL_WID_CMD);	// read len
- 49e:	80 e6       	ldi	r24, 0x60	; 96
- 4a0:	76 de       	rcall	.-788    	; 0x18e <SPI_Read_Reg>
- 4a2:	18 2f       	mov	r17, r24
+ 496:	80 e6       	ldi	r24, 0x60	; 96
+ 498:	76 de       	rcall	.-788    	; 0x186 <SPI_Read_Reg>
+ 49a:	18 2f       	mov	r17, r24
 
 			if(len<=MAX_PACKET_LEN)
- 4a4:	81 32       	cpi	r24, 0x21	; 33
- 4a6:	28 f4       	brcc	.+10     	; 0x4b2 <Receive_Packet+0x28>
+ 49c:	81 32       	cpi	r24, 0x21	; 33
+ 49e:	28 f4       	brcc	.+10     	; 0x4aa <Receive_Packet+0x28>
 			{
 				SPI_Read_Buf(RD_RX_PLOAD,buf,len);// read receive payload from RX_FIFO buffer
- 4a8:	81 e6       	ldi	r24, 0x61	; 97
- 4aa:	be 01       	movw	r22, r28
- 4ac:	41 2f       	mov	r20, r17
- 4ae:	77 de       	rcall	.-786    	; 0x19e <SPI_Read_Buf>
- 4b0:	03 c0       	rjmp	.+6      	; 0x4b8 <Receive_Packet+0x2e>
+ 4a0:	81 e6       	ldi	r24, 0x61	; 97
+ 4a2:	be 01       	movw	r22, r28
+ 4a4:	41 2f       	mov	r20, r17
+ 4a6:	77 de       	rcall	.-786    	; 0x196 <SPI_Read_Buf>
+ 4a8:	03 c0       	rjmp	.+6      	; 0x4b0 <Receive_Packet+0x2e>
 			}
 			else
 			{
 				SPI_Write_Reg(FLUSH_RX,0);//flush Rx
- 4b2:	82 ee       	ldi	r24, 0xE2	; 226
- 4b4:	60 e0       	ldi	r22, 0x00	; 0
- 4b6:	59 de       	rcall	.-846    	; 0x16a <SPI_Write_Reg>
+ 4aa:	82 ee       	ldi	r24, 0xE2	; 226
+ 4ac:	60 e0       	ldi	r22, 0x00	; 0
+ 4ae:	59 de       	rcall	.-846    	; 0x162 <SPI_Write_Reg>
 			}
 
 			fifo_sta=SPI_Read_Reg(FIFO_STATUS);	// read register FIFO_STATUS's value
- 4b8:	87 e1       	ldi	r24, 0x17	; 23
- 4ba:	69 de       	rcall	.-814    	; 0x18e <SPI_Read_Reg>
+ 4b0:	87 e1       	ldi	r24, 0x17	; 23
+ 4b2:	69 de       	rcall	.-814    	; 0x186 <SPI_Read_Reg>
 							
 		}while((fifo_sta&FIFO_STATUS_RX_EMPTY)==0); //while not empty
- 4bc:	80 ff       	sbrs	r24, 0
- 4be:	ef cf       	rjmp	.-34     	; 0x49e <Receive_Packet+0x14>
- 4c0:	01 c0       	rjmp	.+2      	; 0x4c4 <Receive_Packet+0x3a>
+ 4b4:	80 ff       	sbrs	r24, 0
+ 4b6:	ef cf       	rjmp	.-34     	; 0x496 <Receive_Packet+0x14>
+ 4b8:	01 c0       	rjmp	.+2      	; 0x4bc <Receive_Packet+0x3a>
 Return:
 	None
 **************************************************/
 char Receive_Packet(char * buf, char buf_len)
 {
 	UINT8 len,i,sta,fifo_sta,value,chksum,aa, res = 0;
- 4c2:	10 e0       	ldi	r17, 0x00	; 0
+ 4ba:	10 e0       	ldi	r17, 0x00	; 0
 		}
 		
 */
 		res = len;		
 	}
 	SPI_Write_Reg(WRITE_REG|STATUS,sta);// clear RX_DR or TX_DS or MAX_RT interrupt flag
- 4c4:	87 e2       	ldi	r24, 0x27	; 39
- 4c6:	60 2f       	mov	r22, r16
- 4c8:	50 de       	rcall	.-864    	; 0x16a <SPI_Write_Reg>
+ 4bc:	87 e2       	ldi	r24, 0x27	; 39
+ 4be:	60 2f       	mov	r22, r16
+ 4c0:	50 de       	rcall	.-864    	; 0x162 <SPI_Write_Reg>
 	
 	return res;	
 }
- 4ca:	81 2f       	mov	r24, r17
- 4cc:	df 91       	pop	r29
- 4ce:	cf 91       	pop	r28
- 4d0:	1f 91       	pop	r17
- 4d2:	0f 91       	pop	r16
- 4d4:	08 95       	ret
+ 4c2:	81 2f       	mov	r24, r17
+ 4c4:	df 91       	pop	r29
+ 4c6:	cf 91       	pop	r28
+ 4c8:	1f 91       	pop	r17
+ 4ca:	0f 91       	pop	r16
+ 4cc:	08 95       	ret
 
-000004d6 <_exit>:
- 4d6:	f8 94       	cli
+000004ce <_exit>:
+ 4ce:	f8 94       	cli
 
-000004d8 <__stop_program>:
- 4d8:	ff cf       	rjmp	.-2      	; 0x4d8 <__stop_program>
+000004d0 <__stop_program>:
+ 4d0:	ff cf       	rjmp	.-2      	; 0x4d0 <__stop_program>

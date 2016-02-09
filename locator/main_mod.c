@@ -32,8 +32,28 @@ inline void shutDownLeds(){
 	COLORBLUEPORT 		&= (~COLORBLUE);
 }
 
-char fitPowerInByte(char power){
-	return ( ( (power << 4) & 0xF0 ) | power );
+char fitPowerInByte(char power, char isYelow){
+	char leds = 0;
+	switch (power){
+		case 0:
+			return 0b00000000;
+			break;
+		case 1:
+			return (isYelow ? 0b00001000 : 0b00000001 );
+			break;
+		case 2:
+			return (isYelow ? 0b00001100 : 0b00000011 );
+			break;
+		case 3:
+			return (isYelow ? 0b00001110 : 0b00000111 );
+			break;
+		case 4:
+			return 0b00001111;
+			break;
+		default:
+			return 0;
+			break;
+	}
 }
 
 #define POINTNUMBER 1
@@ -55,6 +75,7 @@ int main ()
 
 
 _delay_ms(2000);
+//shutDownLeds();
 
 /*
 showPower(2,1);
@@ -69,7 +90,7 @@ _delay_ms(2000);
 
 #define POWERCOUNT  4
 #define NOSIGNAL 5
-#define UNITCOUNT 6
+#define UNITCOUNT 3
 
 	while (1)
 	{
@@ -82,29 +103,40 @@ _delay_ms(2000);
 
 			UINT8 len = Receive_Packet(rx_buf, MAX_PACKET_LEN);
 			if (len > 0){
+				//INVBIT(PORTC,1);
 				if (rx_buf[POINTPOWER] < less_power[rx_buf[POINTNUMBER]])
 					less_power[rx_buf[POINTNUMBER]] = rx_buf[POINTPOWER];
 			}
 		}
 
 		// show statistic
-		shutDownLeds();
-
+		//shutDownLeds();
+		/*
 		for (char n=0; n < (UNITCOUNT / 2); n++){
 			if (less_power[n*2] < less_power[n*2 + 1])
 				less_power[n] = less_power[n*2];
 			else
 				less_power[n] = less_power[n*2 +1]; 
 		}
+		*/
 
-		char power = fitPowerInByte(POWERCOUNT - less_power[0]);
-		COLORYELOWPORT &= (power | (~COLORYELOW));
+		char power = 0;
+		
+		power = fitPowerInByte(POWERCOUNT - less_power[0] , 1);
+		COLORYELOWPORT = (power << 4);
 
-		power = fitPowerInByte(POWERCOUNT - less_power[1]);
-		COLORGREENPORT &= (power | (~COLORGREEN));
+		power = fitPowerInByte(POWERCOUNT - less_power[1] , 0);
+		COLORGREENPORT &= 0x0F;
+		COLORGREENPORT |= (power << 4);
 
-		power = fitPowerInByte(POWERCOUNT - less_power[2]);
-		COLORBLUEPORT &= (power | (~COLORBLUE));
+		power = fitPowerInByte(POWERCOUNT - less_power[2] , 0);
+		COLORBLUEPORT &= 0xF0;
+		COLORBLUEPORT |= power;
+
+
+		
+
+
 	}
 
 	return 0;

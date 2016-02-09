@@ -123,7 +123,7 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x4da
+.text           0x00000000      0x4d2
  *(.vectors)
  .vectors       0x00000000       0x26 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
                 0x00000000                __vector_default
@@ -179,6 +179,7 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  *(.init9)
  *(.text)
  .text          0x0000005c        0x2 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
+                0x0000005c                __vector_1
                 0x0000005c                __vector_12
                 0x0000005c                __bad_interrupt
                 0x0000005c                __vector_6
@@ -192,44 +193,42 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
                 0x0000005c                __vector_9
                 0x0000005c                __vector_2
                 0x0000005c                __vector_15
-                0x0000005c                __vector_8
                 0x0000005c                __vector_14
                 0x0000005c                __vector_10
                 0x0000005c                __vector_16
                 0x0000005c                __vector_18
- .text          0x0000005e       0xf2 main_mod.o
-                0x0000005e                initInt0ToOff
-                0x00000068                initInt0ToON
-                0x00000070                __vector_1
-                0x000000d0                main
- .text          0x00000150      0x386 rf73_spi.o
-                0x00000150                Init_Spi
-                0x00000160                ReadWrite_Spi
-                0x0000016a                SPI_Write_Reg
-                0x0000018e                SPI_Read_Reg
-                0x0000019e                SPI_Read_Buf
-                0x000001e8                SPI_Write_Buf
-                0x00000234                SwitchToRxMode
-                0x00000256                SwitchToTxMode
-                0x0000026e                SwitchCFG
-                0x0000028e                SetChannelNum
-                0x00000296                RFM73_Initialize
-                0x00000436                RFM73_SetPower
-                0x00000446                Send_Packet
-                0x0000048a                Receive_Packet
- .text          0x000004d6        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
- .text          0x000004d6        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
- .text          0x000004d6        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
-                0x000004d6                . = ALIGN (0x2)
+ .text          0x0000005e       0xea main_mod.o
+                0x0000005e                SetupTIMER1
+                0x00000072                __vector_8
+                0x000000d8                main
+ .text          0x00000148      0x386 rf73_spi.o
+                0x00000148                Init_Spi
+                0x00000158                ReadWrite_Spi
+                0x00000162                SPI_Write_Reg
+                0x00000186                SPI_Read_Reg
+                0x00000196                SPI_Read_Buf
+                0x000001e0                SPI_Write_Buf
+                0x0000022c                SwitchToRxMode
+                0x0000024e                SwitchToTxMode
+                0x00000266                SwitchCFG
+                0x00000286                SetChannelNum
+                0x0000028e                RFM73_Initialize
+                0x0000042e                RFM73_SetPower
+                0x0000043e                Send_Packet
+                0x00000482                Receive_Packet
+ .text          0x000004ce        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+ .text          0x000004ce        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
+ .text          0x000004ce        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
+                0x000004ce                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x000004d6        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
- .text.libgcc   0x000004d6        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
- .text.libgcc   0x000004d6        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
-                0x000004d6                . = ALIGN (0x2)
+ .text.libgcc   0x000004ce        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x000004ce        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_copy_data.o)
+ .text.libgcc   0x000004ce        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_clear_bss.o)
+                0x000004ce                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000004d6        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
-                0x000004d6                _exit
-                0x000004d6                exit
+ .fini9         0x000004ce        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+                0x000004ce                _exit
+                0x000004ce                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -248,11 +247,11 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000004d6        0x4 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
+ .fini0         0x000004ce        0x4 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x000004da                _etext = .
+                0x000004d2                _etext = .
 
-.data           0x00800060       0x84 load address 0x000004da
+.data           0x00800060       0x84 load address 0x000004d2
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/../../../../avr/lib/avr4/crtm8.o
@@ -292,8 +291,8 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
  COMMON         0x00800104        0x1 rf73_spi.o
                 0x00800104                op_status
                 0x00800105                PROVIDE (__bss_end, .)
-                0x000004da                __data_load_start = LOADADDR (.data)
-                0x0000055e                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000004d2                __data_load_start = LOADADDR (.data)
+                0x00000556                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800105        0x0
                 0x00800105                PROVIDE (__noinit_start, .)
@@ -361,45 +360,45 @@ LOAD c:/program files/atmel/avr tools/avr toolchain/bin/../lib/gcc/avr/4.5.1/avr
                 0x00000020       0x20 rf73_spi.o
 
 .debug_pubnames
-                0x00000000      0x1d3
+                0x00000000      0x1c0
  *(.debug_pubnames)
  .debug_pubnames
-                0x00000000       0x6d main_mod.o
+                0x00000000       0x5a main_mod.o
  .debug_pubnames
-                0x0000006d      0x166 rf73_spi.o
+                0x0000005a      0x166 rf73_spi.o
 
-.debug_info     0x00000000      0x95d
+.debug_info     0x00000000      0x949
  *(.debug_info)
- .debug_info    0x00000000      0x27b main_mod.o
- .debug_info    0x0000027b      0x6e2 rf73_spi.o
+ .debug_info    0x00000000      0x267 main_mod.o
+ .debug_info    0x00000267      0x6e2 rf73_spi.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x3e1
+.debug_abbrev   0x00000000      0x3f5
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x17f main_mod.o
- .debug_abbrev  0x0000017f      0x262 rf73_spi.o
+ .debug_abbrev  0x00000000      0x193 main_mod.o
+ .debug_abbrev  0x00000193      0x262 rf73_spi.o
 
-.debug_line     0x00000000      0x819
+.debug_line     0x00000000      0x812
  *(.debug_line)
- .debug_line    0x00000000      0x2a6 main_mod.o
- .debug_line    0x000002a6      0x573 rf73_spi.o
+ .debug_line    0x00000000      0x29f main_mod.o
+ .debug_line    0x0000029f      0x573 rf73_spi.o
 
-.debug_frame    0x00000000      0x140
+.debug_frame    0x00000000      0x130
  *(.debug_frame)
- .debug_frame   0x00000000       0x50 main_mod.o
- .debug_frame   0x00000050       0xf0 rf73_spi.o
+ .debug_frame   0x00000000       0x40 main_mod.o
+ .debug_frame   0x00000040       0xf0 rf73_spi.o
 
-.debug_str      0x00000000      0x2a1
+.debug_str      0x00000000      0x283
  *(.debug_str)
- .debug_str     0x00000000      0x12e main_mod.o
-                                0x167 (size before relaxing)
- .debug_str     0x0000012e      0x173 rf73_spi.o
-                                0x295 (size before relaxing)
+ .debug_str     0x00000000      0x110 main_mod.o
+                                0x149 (size before relaxing)
+ .debug_str     0x00000110      0x173 rf73_spi.o
+                                0x286 (size before relaxing)
 
-.debug_loc      0x00000000      0x591
+.debug_loc      0x00000000      0x5d9
  *(.debug_loc)
- .debug_loc     0x00000000       0x14 main_mod.o
- .debug_loc     0x00000014      0x57d rf73_spi.o
+ .debug_loc     0x00000000       0x5c main_mod.o
+ .debug_loc     0x0000005c      0x57d rf73_spi.o
 
 .debug_macinfo
  *(.debug_macinfo)
