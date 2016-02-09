@@ -1,6 +1,8 @@
 #include <avr/io.h>
 #include <avr/delay.h>
 #include <avr/interrupt.h>
+#include <avr/sleep.h>
+
 #include "rf73_spi.h"
 
 #define INVBIT(port, bit) port = port ^ (1<<bit);
@@ -12,11 +14,42 @@
 #define POWERPOSITION  2
 #define POWERCOUNT  4
 
+#define OFF 0
+#define ON 1
+static char state = ON;
+
 const UINT8 POWER[POWERCOUNT] = {0x00, 0x01, 0x02, 0x03};
 
 UINT8 tx_buf[4] = {	FRAMEBORDER, UNITNUMBER, 0x00, FRAMEBORDER};
 
 UINT8 rx_buf[MAX_PACKET_LEN];
+
+void initInt0ToOff(){
+	GIMSK=0b01000000; // init int0 by interrupt
+	//MCUCR=0b00000100; // init int0 by 1->0
+	MCUCR=0b00001000; // init int0 by 1->0
+}
+
+void initInt0ToON(){
+	GIMSK=0b01000000; // init int0 by interrupt
+	MCUCR=0b00000000; // init int0 by 0->0
+}
+
+		
+
+ISR(INT0_vect)
+{
+	cli();
+	
+	if (state == ON){ // gotosleep
+		initInt0ToON();
+		state = OFF;
+	}else{ // wake up
+		initInt0ToOff();
+		state = ON;
+		sei();
+	}
+}
 
 
 int main ()
@@ -36,9 +69,9 @@ int main ()
 	PORTD = 0b00000100;
 
 
-	GIMSK=0b01000000; // init int0 by interrupt
-	MCUCR=0b00001000; // init int0 by 1->0
+	initInt0ToOff();
 
+	sleep_enable();
 
 	
 	while (1)
@@ -56,6 +89,13 @@ int main ()
 
 			_delay_ms(150);
 			INVBIT(PORTC, 0);
+		}
+
+		if (state == OFF){
+			DOWNBIT(PORTC, 0);
+			_delay_ms(10000);
+			sei();
+			sleep_cpu();
 		}
 		
 	}
